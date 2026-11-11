@@ -1,4 +1,4 @@
-++<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -6,23 +6,28 @@
   <title>أخبار اليوم - دليلك الإخباري المخصص</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #0284c7;
       --primary-hover: #0369a1;
       --primary-light: #e0f2fe;
       --cyan-neon: #38bdf8;
-      --cyan-glow: rgba(56, 189, 248, 0.65);
+      --cyan-glow: rgba(56, 189, 248, 0.45);
       --danger: #ef4444;
       --danger-hover: #dc2626;
       --danger-light: #fee2e2;
-      --bg-body: #f8fafc;
-      --card-bg: #ffffff;
+      --bg-body: #f1f5f9;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-glass: rgba(255, 255, 255, 0.85);
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border-color: #e2e8f0;
-      --radius: 14px;
+      --border-glass: rgba(226, 232, 240, 0.9);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 25px -3px rgba(15, 23, 42, 0.07), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
     }
 
     * {
@@ -30,43 +35,48 @@
       margin: 0;
       padding: 0;
       font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-variant-numeric: tabular-nums;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-body);
+      background: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #f8fafc 40%, #f1f5f9 100%);
+      background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 12px 10px 36px;
+      padding: 12px 10px 28px;
       text-rendering: optimizeSpeed;
     }
 
     .container {
       width: 100%;
-      max-width: 580px;
+      max-width: 620px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
     }
 
     button, input, select {
       touch-action: manipulation;
     }
 
-    /* Top App Bar */
+    /* Top App Bar with Frosted Glass */
     .top-bar {
-      background: var(--card-bg);
+      background: var(--card-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: var(--radius);
       padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-glass);
       position: sticky;
       top: 6px;
       z-index: 100;
@@ -76,25 +86,33 @@
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .brand-icon {
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(2, 132, 199, 0.25));
     }
 
     .brand-title {
       font-size: 1.25rem;
-      font-weight: 800;
-      color: #1e293b;
+      font-weight: 900;
+      color: #0f172a;
       line-height: 1.2;
+      letter-spacing: -0.3px;
     }
 
     .brand-sub {
       font-size: 0.72rem;
       color: var(--text-muted);
       font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     /* Circular Neon Plus Button */
@@ -107,32 +125,32 @@
     }
 
     .btn-neon-circle {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #0f172a;
-      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      border: 1.5px solid var(--cyan-neon);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
-      transition: transform 0.15s ease;
+      box-shadow: 0 0 14px var(--cyan-glow), 0 2px 6px rgba(15, 23, 42, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       outline: none;
       padding: 0;
     }
 
     .btn-neon-circle svg {
-      width: 20px;
-      height: 20px;
+      width: 21px;
+      height: 21px;
       stroke: var(--cyan-neon);
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease;
     }
 
     @media (hover: hover) {
       .btn-neon-circle:hover {
-        transform: scale(1.05);
-        border-color: rgba(56, 189, 248, 0.9);
+        transform: scale(1.06);
+        box-shadow: 0 0 20px var(--cyan-neon);
       }
       .btn-neon-circle:hover svg {
         transform: rotate(90deg);
@@ -140,12 +158,12 @@
     }
 
     .btn-neon-circle:active {
-      transform: scale(0.95);
+      transform: scale(0.94);
     }
 
     .add-btn-caption {
       font-size: 0.68rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
       line-height: 1;
     }
@@ -162,14 +180,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 2px;
+      padding: 2px 2px;
       flex-wrap: wrap;
       gap: 6px;
     }
 
     .section-title {
       font-size: 1.05rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #1e293b;
       display: flex;
       align-items: center;
@@ -177,12 +195,13 @@
     }
 
     .sort-indicator-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.73rem;
+      font-weight: 800;
       color: var(--primary);
-      background: var(--primary-light);
-      padding: 2px 8px;
-      border-radius: 10px;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      padding: 3px 10px;
+      border-radius: 20px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -191,10 +210,10 @@
     .count-badge {
       font-size: 0.75rem;
       background: #e2e8f0;
-      color: #334155;
-      padding: 2px 10px;
+      color: #1e293b;
+      padding: 2px 9px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .search-input-wrapper {
@@ -205,17 +224,18 @@
     .search-input {
       width: 100%;
       border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 9px 36px 9px 12px;
+      border-radius: 12px;
+      padding: 10px 38px 10px 14px;
       font-size: 0.88rem;
       background: #ffffff;
       outline: none;
-      transition: border-color 0.15s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
     }
 
     .search-input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
     }
 
     .search-icon {
@@ -228,7 +248,7 @@
       pointer-events: none;
     }
 
-    /* Sleek Modern Category Header Bar */
+    /* Sleek Category Header Bar */
     .category-header-bar {
       display: flex;
       align-items: center;
@@ -236,12 +256,11 @@
       width: 100%;
     }
 
-    /* Main Category Dropdown / Curtain Trigger */
     .btn-category-curtain-trigger {
       flex: 1;
       background: #ffffff;
       border: 1.5px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 9px 14px;
       display: flex;
       align-items: center;
@@ -249,7 +268,7 @@
       gap: 8px;
       cursor: pointer;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      transition: border-color 0.15s, background-color 0.15s;
+      transition: all 0.15s ease;
       outline: none;
     }
 
@@ -262,7 +281,7 @@
 
     .btn-category-curtain-trigger.open {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
     }
 
     .trigger-label-group {
@@ -283,7 +302,7 @@
       background: #e2e8f0;
       color: #334155;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 1px 8px;
       border-radius: 10px;
     }
@@ -291,7 +310,7 @@
     .trigger-arrow {
       font-size: 0.8rem;
       color: var(--primary);
-      transition: transform 0.2s ease;
+      transition: transform 0.22s ease;
       display: inline-block;
     }
 
@@ -304,16 +323,16 @@
       background: #fffbeb;
       border: 1.5px solid #fde68a;
       color: #b45309;
-      padding: 9px 12px;
-      border-radius: 12px;
+      padding: 9px 13px;
+      border-radius: 14px;
       font-size: 0.84rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      transition: background-color 0.15s;
+      transition: all 0.15s ease;
       flex-shrink: 0;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
@@ -329,24 +348,303 @@
       background: #f59e0b;
       color: #ffffff;
       border-color: #f59e0b;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
     }
 
     .fav-count-pill {
       background: rgba(0, 0, 0, 0.08);
-      padding: 1px 6px;
+      padding: 1px 7px;
       border-radius: 8px;
       font-size: 0.72rem;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .btn-quick-fav.active .fav-count-pill {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.28);
       color: #ffffff;
     }
 
-    /* ========================================================
-       CURTAIN SHEET & OVERLAY (GPU Optimized, 60fps)
-       ======================================================== */
+    /* Sites Grid (50/50 Columns) */
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      width: 100%;
+      contain: content;
+    }
+
+    @media (max-width: 480px) {
+      .sites-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .site-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 9px 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      position: relative;
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
+      contain: layout style;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (hover: hover) {
+      .site-card:hover {
+        border-color: #93c5fd;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+    }
+
+    .site-main-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      text-align: right;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 3px 0;
+    }
+
+    .site-icon-wrapper {
+      width: 40px;
+      min-width: 40px;
+      max-width: 40px;
+      height: 40px;
+      min-height: 40px;
+      max-height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--primary);
+      border: 1px solid #e2e8f0;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .site-icon-img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    .site-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+      flex: 1;
+      gap: 2px;
+    }
+
+    .site-name-text {
+      font-size: 0.91rem;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #0f172a;
+      line-height: 1.3;
+      display: block;
+      width: 100%;
+    }
+
+    .site-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      overflow: hidden;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .site-desc-text {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      flex: 1;
+      min-width: 0;
+      font-weight: 600;
+    }
+
+    .site-fav-badge {
+      font-size: 0.65rem;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 1px 5px;
+      border-radius: 5px;
+      font-weight: 800;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .site-visits-tag {
+      font-size: 0.65rem;
+      color: #ea580c;
+      background: #fff7ed;
+      border: 1px solid #ffedd5;
+      padding: 0 5px;
+      border-radius: 5px;
+      font-weight: 800;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .user-added-badge {
+      font-size: 0.65rem;
+      color: #047857;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 1px 5px;
+      border-radius: 5px;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .translate-badge {
+      font-size: 0.63rem;
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+      padding: 0 5px;
+      border-radius: 5px;
+      font-weight: 800;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .btn-quick-star {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+    .btn-quick-star.is-fav {
+      color: #f59e0b;
+      transform: scale(1.05);
+    }
+    .btn-quick-star:hover {
+      color: #f59e0b;
+    }
+
+    .btn-dots {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      width: 30px;
+      min-width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      line-height: 1;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+
+    @media (hover: hover) {
+      .btn-dots:hover {
+        background: #f1f5f9;
+        color: var(--primary);
+      }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 38px 20px;
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .empty-state-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Storage Indicator */
+    .storage-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      padding: 4px 6px;
+    }
+
+    .storage-indicator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 8px;
+      background: #ecfdf5;
+      color: #047857;
+      font-size: 0.74rem;
+      font-weight: 800;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Curtain Sheet & Overlay */
     .curtain-overlay {
       position: fixed;
       top: 0;
@@ -354,6 +652,8 @@
       right: 0;
       bottom: 0;
       background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       z-index: 1050;
       opacity: 0;
       visibility: hidden;
@@ -363,7 +663,6 @@
       align-items: center;
       justify-content: flex-start;
       padding: 12px 14px 40px;
-      will-change: opacity;
     }
 
     .curtain-overlay.active {
@@ -373,11 +672,11 @@
 
     .curtain-sheet {
       width: 100%;
-      max-width: 580px;
+      max-width: 620px;
       background: #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      padding: 16px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      padding: 18px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -385,7 +684,6 @@
       transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       max-height: 85vh;
       overflow-y: auto;
-      will-change: transform;
     }
 
     .curtain-overlay.active .curtain-sheet {
@@ -400,15 +698,9 @@
       padding-bottom: 10px;
     }
 
-    .curtain-title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
     .curtain-title-text {
       font-size: 1.05rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #1e293b;
       display: flex;
       align-items: center;
@@ -437,7 +729,6 @@
       transition: background 0.15s;
     }
 
-    /* Categories Grid inside Curtain */
     .curtain-categories-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -463,7 +754,7 @@
       justify-content: space-between;
       gap: 8px;
       cursor: pointer;
-      transition: background-color 0.15s, border-color 0.15s;
+      transition: all 0.15s ease;
       text-align: right;
     }
 
@@ -507,7 +798,7 @@
 
     .curtain-cat-name {
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -550,22 +841,15 @@
       display: inline-block;
     }
 
-    .curtain-footer {
-      display: flex;
-      justify-content: flex-end;
-      padding-top: 10px;
-      border-top: 1px solid var(--border-color);
-    }
-
     .btn-curtain-add-cat {
       background: var(--primary-light);
       border: 1px dashed var(--primary);
       color: var(--primary);
       width: 100%;
-      padding: 9px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 12px;
       font-size: 0.86rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -574,236 +858,7 @@
       transition: background-color 0.15s;
     }
 
-    /* Sites Grid */
-    .sites-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      width: 100%;
-      contain: content;
-    }
-
-    @media (max-width: 480px) {
-      .sites-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .site-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-      position: relative;
-      min-width: 0;
-      width: 100%;
-      overflow: hidden;
-      contain: layout style;
-    }
-
-    @media (hover: hover) {
-      .site-card:hover {
-        border-color: #cbd5e1;
-      }
-    }
-
-    .site-main-btn {
-      background: none;
-      border: none;
-      color: var(--text-main);
-      cursor: pointer;
-      text-align: right;
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 4px 0;
-    }
-
-    .site-icon-wrapper {
-      width: 38px;
-      min-width: 38px;
-      max-width: 38px;
-      height: 38px;
-      min-height: 38px;
-      max-height: 38px;
-      border-radius: 10px;
-      background: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      overflow: hidden;
-      font-weight: 800;
-      font-size: 0.92rem;
-      color: var(--primary);
-      border: 1px solid #e2e8f0;
-    }
-
-    .site-icon-img {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
-      object-fit: contain;
-    }
-
-    .site-info {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      min-width: 0;
-      flex: 1;
-      gap: 2px;
-    }
-
-    .site-name-text {
-      font-size: 0.9rem;
-      font-weight: 800;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #0f172a;
-      line-height: 1.3;
-      display: block;
-      width: 100%;
-    }
-
-    .site-sub-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      overflow: hidden;
-      min-width: 0;
-      width: 100%;
-    }
-
-    .site-desc-text {
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: inline-block;
-      flex: 1;
-      min-width: 0;
-      font-weight: 600;
-    }
-
-    .site-fav-badge {
-      font-size: 0.65rem;
-      color: #92400e;
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 800;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-
-    .site-visits-tag {
-      font-size: 0.65rem;
-      color: #ea580c;
-      background: #fff7ed;
-      border: 1px solid #ffedd5;
-      padding: 0 4px;
-      border-radius: 4px;
-      font-weight: 700;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-
-    .user-added-badge {
-      font-size: 0.65rem;
-      color: #92400e;
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 800;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-
-    .translate-badge {
-      font-size: 0.63rem;
-      background: #f0fdf4;
-      color: #16a34a;
-      border: 1px solid #bbf7d0;
-      padding: 0 4px;
-      border-radius: 4px;
-      font-weight: 700;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    .btn-dots {
-      background: transparent;
-      border: none;
-      color: #64748b;
-      cursor: pointer;
-      width: 32px;
-      min-width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      line-height: 1;
-      transition: background 0.15s;
-      flex-shrink: 0;
-    }
-
-    @media (hover: hover) {
-      .btn-dots:hover {
-        background: #f1f5f9;
-        color: var(--primary);
-      }
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 32px 16px;
-      background: #ffffff;
-      border: 1px dashed var(--border-color);
-      border-radius: var(--radius);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .empty-state-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* Modals & Overlays (GPU Optimized, No Lag) */
+    /* Modals & Overlays */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -811,15 +866,16 @@
       right: 0;
       bottom: 0;
       background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      z-index: 1000;
+      z-index: 1100;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.2s ease, visibility 0.2s ease;
-      will-change: opacity;
     }
 
     .modal-overlay.active {
@@ -829,19 +885,18 @@
 
     .modal-box {
       background: #ffffff;
-      border-radius: 18px;
+      border-radius: 20px;
       width: 100%;
       max-width: 520px;
       max-height: 90vh;
       overflow-y: auto;
       padding: 18px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--shadow-md);
       transform: translate3d(0, 10px, 0);
       transition: transform 0.2s ease;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      will-change: transform;
     }
 
     .modal-overlay.active .modal-box {
@@ -858,7 +913,7 @@
 
     .modal-title {
       font-size: 1.05rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #1e293b;
       display: flex;
       align-items: center;
@@ -891,7 +946,6 @@
       border-top: 1px solid var(--border-color);
     }
 
-    /* Modal Form Elements */
     .form-group {
       display: flex;
       flex-direction: column;
@@ -900,7 +954,7 @@
 
     .form-label {
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       color: #334155;
     }
 
@@ -912,7 +966,7 @@
     .text-input {
       flex: 1;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 9px 12px;
       font-size: 0.88rem;
       outline: none;
@@ -937,9 +991,9 @@
       border: none;
       color: #334155;
       padding: 0 12px;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -960,10 +1014,9 @@
       align-items: center;
       gap: 8px;
       font-size: 0.82rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #475569;
       cursor: pointer;
-      user-select: none;
     }
 
     .checkbox-label input[type="checkbox"] {
@@ -973,22 +1026,21 @@
       cursor: pointer;
     }
 
-    /* Manage Modal Action Buttons */
     .btn-fav-action {
       width: 100%;
       padding: 11px 14px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1.5px solid #cbd5e1;
       background: #f8fafc;
       color: #334155;
       font-size: 0.92rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: background-color 0.15s, border-color 0.15s;
+      transition: all 0.15s ease;
     }
 
     .btn-fav-action.active-fav {
@@ -1000,22 +1052,21 @@
     .move-category-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 10px 12px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* Buttons in Modals */
     .btn-secondary {
       background: #e2e8f0;
       border: none;
       color: #334155;
-      padding: 8px 14px;
-      border-radius: 8px;
+      padding: 9px 15px;
+      border-radius: 10px;
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
 
@@ -1023,41 +1074,49 @@
       background: var(--primary);
       border: none;
       color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 9px 18px;
+      border-radius: 10px;
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: background-color 0.15s;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
     }
 
     .btn-danger {
       background: var(--danger);
       border: none;
       color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 9px 16px;
+      border-radius: 10px;
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
 
     /* Tabs in Add Modal */
     .tabs-bar {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 2px solid #e2e8f0;
       margin-bottom: 6px;
       gap: 6px;
     }
 
+    .tabs-group-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     .tab-btn {
-      padding: 8px 12px;
+      padding: 9px 14px;
       background: none;
       border: none;
-      border-bottom: 2px solid transparent;
+      border-bottom: 2.5px solid transparent;
       margin-bottom: -2px;
-      font-size: 0.86rem;
-      font-weight: 700;
+      font-size: 0.88rem;
+      font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
       white-space: nowrap;
@@ -1066,6 +1125,29 @@
     .tab-btn.active {
       color: var(--primary);
       border-bottom-color: var(--primary);
+    }
+
+    .btn-tab-settings {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-tab-settings:hover {
+      background: #e2e8f0;
+      color: var(--primary);
+      border-color: var(--primary);
     }
 
     .tab-pane {
@@ -1078,7 +1160,7 @@
       display: flex;
     }
 
-    /* High-Performance Directory List */
+    /* Directory Results */
     .directory-results-list {
       max-height: 290px;
       overflow-y: auto;
@@ -1087,7 +1169,7 @@
       gap: 6px;
       padding: 6px;
       border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border-radius: 12px;
       background: #f8fafc;
       contain: content;
     }
@@ -1095,13 +1177,12 @@
     .directory-item {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 8px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      contain: layout style;
     }
 
     .directory-item-info {
@@ -1142,9 +1223,9 @@
       color: var(--primary);
       border: 1px solid #bae6fd;
       padding: 5px 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
       flex-shrink: 0;
@@ -1155,35 +1236,12 @@
       border: 1px dashed #cbd5e1;
       color: #475569;
       padding: 8px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       text-align: center;
       margin-top: 4px;
-    }
-
-    /* Storage Indicator */
-    .storage-status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      padding: 4px 4px;
-    }
-
-    .storage-indicator-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 9px;
-      border-radius: 6px;
-      background: #ecfdf5;
-      color: #047857;
-      font-size: 0.74rem;
-      font-weight: 700;
-      border: 1px solid #a7f3d0;
     }
 
     /* Toasts */
@@ -1200,13 +1258,13 @@
     }
 
     .toast {
-      background: #1e293b;
+      background: #0f172a;
       color: #ffffff;
       padding: 10px 18px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      border-radius: 12px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       opacity: 0;
       transform: translateY(10px);
       transition: all 0.2s ease;
@@ -1231,152 +1289,42 @@
     }
 
     .toast.info {
-      background: #1e293b;
-      border-right: 4px solid var(--primary);
+      background: #0f172a;
+      border-right: 4px solid var(--cyan-neon);
+    }
+
+    /* Footer */
+    .app-footer {
+      margin-top: 18px;
+      width: 100%;
+      text-align: center;
+      padding: 10px 4px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #475569;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     @media (max-width: 480px) {
       body {
-        min-height: 100svh;
-        padding: max(8px, env(safe-area-inset-top)) 8px calc(24px + env(safe-area-inset-bottom));
+        padding: max(8px, env(safe-area-inset-top)) 8px calc(18px + env(safe-area-inset-bottom));
       }
-
-      .container {
-        gap: 10px;
-      }
-
       .top-bar {
-        top: max(6px, env(safe-area-inset-top));
-        padding: 9px 12px;
+        padding: 8px 12px;
       }
-
-      .brand-group {
-        min-width: 0;
-      }
-
       .brand-title {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
       }
-
       .btn-neon-circle {
-        width: 44px;
-        height: 44px;
-      }
-
-      .category-header-bar {
-        gap: 6px;
-      }
-
-      .btn-category-curtain-trigger,
-      .btn-quick-fav {
-        min-height: 44px;
-      }
-
-      .btn-category-curtain-trigger {
-        padding-inline: 10px;
-      }
-
-      .trigger-label-group {
-        min-width: 0;
-        gap: 6px;
-      }
-
-      .trigger-title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .btn-quick-fav {
-        padding-inline: 9px;
-      }
-
-      .modal-overlay,
-      .curtain-overlay {
-        padding: max(8px, env(safe-area-inset-top)) 8px max(8px, env(safe-area-inset-bottom));
-      }
-
-      .modal-box {
-        max-height: calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-        padding: 14px;
-        gap: 12px;
-        overscroll-behavior: contain;
-      }
-
-      .curtain-sheet {
-        max-height: calc(100dvh - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-        padding: 14px;
-        overscroll-behavior: contain;
-      }
-
-      .curtain-categories-grid {
-        max-height: min(52dvh, 360px);
-      }
-
-      .directory-results-list {
-        max-height: min(38dvh, 290px);
-      }
-
-      .tabs-bar {
-        flex-wrap: wrap;
-      }
-
-      .tab-btn {
-        flex: 1 1 130px;
-        white-space: normal;
-      }
-
-      .input-row {
-        flex-wrap: wrap;
-      }
-
-      .input-row .text-input {
-        min-width: 0;
-        flex-basis: 100%;
-      }
-
-      .btn-paste {
-        min-height: 42px;
-      }
-
-      .modal-footer > button,
-      .btn-primary,
-      .btn-secondary,
-      .btn-danger {
-        min-height: 42px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      body {
-        padding-inline: 6px;
-      }
-
-      .section-header-row {
-        align-items: flex-start;
-      }
-
-      .sort-indicator-pill {
-        font-size: 0.66rem;
-      }
-
-      .btn-quick-fav {
-        gap: 4px;
-        font-size: 0.76rem;
-      }
-
-      .trigger-label-group {
-        font-size: 0.82rem;
-      }
-    }
-
-    @supports not (height: 100dvh) {
-      .modal-box {
-        max-height: calc(100vh - 16px);
-      }
-
-      .curtain-sheet {
-        max-height: calc(100vh - 16px);
+        width: 42px;
+        height: 42px;
       }
     }
   </style>
@@ -1384,7 +1332,7 @@
 <body>
 
   <div class="container">
-    <!-- Top Bar with Distinct Circular Neon + Button -->
+    <!-- Top Bar with Frosted Glass & Neon Action Button -->
     <header class="top-bar">
       <div class="brand-group">
         <span class="brand-icon">📰</span>
@@ -1394,15 +1342,17 @@
         </div>
       </div>
 
-      <!-- Circular Neon + Button -->
-      <div class="add-action-group">
-        <button type="button" class="btn-neon-circle" id="openAddModalBtn" title="إضافة موقع جديد" aria-label="إضافة موقع جديد">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-        </button>
-        <span class="add-btn-caption">إضافة</span>
+      <div class="header-actions">
+        <!-- Circular Neon + Button -->
+        <div class="add-action-group">
+          <button type="button" class="btn-neon-circle" id="openAddModalBtn" title="إضافة موقع جديد" aria-label="إضافة موقع جديد">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          <span class="add-btn-caption">إضافة</span>
+        </div>
       </div>
     </header>
 
@@ -1414,7 +1364,7 @@
           <span class="count-badge" id="siteCount">4</span>
         </h2>
         <span class="sort-indicator-pill" title="يتم ترتيب المواقع تلقائياً حسب الأكثر زيارة واستخداماً">
-          🔥 حسب الأكثر استخداماً
+          🔥 الأكثر استخداماً
         </span>
       </div>
 
@@ -1424,9 +1374,8 @@
         <span class="search-icon">🔍</span>
       </div>
 
-      <!-- Sleek Modern Category Header Bar (Replaces crowded pills with curtain dropdown) -->
+      <!-- Modern Category Header Bar (Curtain Trigger & Favorites Shortcut) -->
       <div class="category-header-bar">
-        <!-- Main Category Dropdown / Curtain Trigger with Direction Arrow -->
         <button type="button" class="btn-category-curtain-trigger" id="categoryCurtainTrigger" aria-haspopup="true" aria-expanded="false" title="انقر لفتح ستارة التصنيفات">
           <span class="trigger-label-group">
             <span class="trigger-icon" id="triggerCatIcon">📰</span>
@@ -1436,12 +1385,10 @@
           <span class="trigger-arrow" id="triggerArrowIcon">▼</span>
         </button>
 
-        <!-- Quick Favorites Filter Shortcut -->
         <button type="button" class="btn-quick-fav" id="quickFavFilterBtn" title="عرض المفضلة فقط">
           <span>⭐ المفضلة</span>
           <span class="fav-count-pill" id="quickFavCount">0</span>
         </button>
-
       </div>
 
       <!-- Sites Grid (Strict 50/50 Columns) -->
@@ -1449,30 +1396,32 @@
 
       <!-- Storage Status Bar -->
       <div class="storage-status-row">
-        <span id="storageStatusText" class="storage-indicator-pill">💾 الحفظ الدائم التلقائي مفعّل ومؤكد</span>
+        <span id="storageStatusText" class="storage-indicator-pill">💾 الحفظ الدائم الفوري مفعّل (IndexedDB + Storage)</span>
       </div>
     </main>
+
+    <!-- App Signature Footer -->
+    <footer class="app-footer">
+      <span>فكرة وتصميم أبو حازم</span>
+    </footer>
   </div>
 
-  <!-- CATEGORY CURTAIN (ستارة التصنيفات المنسدلة من الأعلى عند النقر على السهم) -->
+  <!-- CATEGORY CURTAIN -->
   <div class="curtain-overlay" id="categoryCurtainOverlay">
     <div class="curtain-sheet" id="categoryCurtainSheet">
       <div class="curtain-header">
-        <div class="curtain-title">
+        <div>
           <div class="curtain-title-text">
             <span>📑 قائمة التصنيفات</span>
           </div>
-          <span class="curtain-sub">اختر التصنيف المطلوب، أو المس أي مكان في الشاشة للإغلاق فوراً</span>
+          <span class="curtain-sub">اختر التصنيف المطلوب، أو المس خارج الستارة للإغلاق</span>
         </div>
         <button type="button" class="curtain-close-btn" id="closeCurtainBtn" title="إغلاق الستارة">&times;</button>
       </div>
 
-      <!-- Grid of Categories inside the Curtain -->
-      <div class="curtain-categories-grid" id="curtainCategoriesGrid">
-        <!-- Rendered dynamically -->
-      </div>
+      <div class="curtain-categories-grid" id="curtainCategoriesGrid"></div>
 
-      <div class="curtain-footer">
+      <div class="curtain-footer" style="padding-top:10px; border-top:1px solid var(--border-color);">
         <button type="button" class="btn-curtain-add-cat" id="curtainAddCategoryBtn">
           ➕ إنشاء تصنيف جديد خاص بك
         </button>
@@ -1480,7 +1429,7 @@
     </div>
   </div>
 
-  <!-- ADD SITE MODAL (Opens via top circular + button) -->
+  <!-- ADD SITE MODAL -->
   <div class="modal-overlay" id="addModalOverlay">
     <div class="modal-box">
       <div class="modal-header">
@@ -1489,13 +1438,19 @@
       </div>
 
       <div class="modal-body">
-        <!-- Tabs: 2 clean tabs (Directory and Custom URL) -->
         <div class="tabs-bar">
-          <button type="button" class="tab-btn active" id="tabSearchBtn">📚 دليل المواقع (<span id="dirCountBadge"></span> متاح)</button>
-          <button type="button" class="tab-btn" id="tabCustomBtn">🔗 رابط يدوي مخصص</button>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="tab-btn active" id="tabSearchBtn">📚 دليل المواقع (<span id="dirCountBadge"></span> متاح)</button>
+            <button type="button" class="tab-btn" id="tabCustomBtn">🔗 رابط يدوي مخصص</button>
+          </div>
+          <div class="tabs-group-left">
+            <button type="button" class="btn-tab-settings" id="openBackupModalBtn" title="النسخ الاحتياطي وإدارة البيانات">
+              ⚙️
+            </button>
+          </div>
         </div>
 
-        <!-- Tab 1: Directory Search (Sites disappear when added, and return when deleted) -->
+        <!-- Tab 1: Directory Search -->
         <div class="tab-pane active" id="tabSearchPane">
           <div class="form-group">
             <label class="form-label" for="directorySearchInput">ابحث في دليل المواقع المدمج لإضافتها لشاشتك:</label>
@@ -1520,12 +1475,12 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="quickNameInput">اسم الموقع (العنوان الرئيسي بالبطاقة):</label>
+            <label class="form-label" for="quickNameInput">اسم الموقع:</label>
             <input type="text" id="quickNameInput" class="text-input" placeholder="مثال: موقع إخباري جديد">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="quickDescInput">وصف الموقع (يظهر بالبطاقة بالسطر الثاني):</label>
+            <label class="form-label" for="quickDescInput">وصف الموقع:</label>
             <input type="text" id="quickDescInput" class="text-input" placeholder="مثال: أخبار وتحليلات مستمرة">
           </div>
 
@@ -1564,7 +1519,6 @@
       <div class="modal-body">
         <input type="hidden" id="manageSiteId">
 
-        <!-- Quick Favorite Toggle Action -->
         <div class="form-group">
           <button type="button" class="btn-fav-action" id="manageFavToggleBtn">
             <span id="favStarIcon">⭐</span>
@@ -1572,23 +1526,21 @@
           </button>
         </div>
 
-        <!-- Quick Move to Category Action -->
         <div class="move-category-box">
           <label class="form-label" for="manageSiteCategory">📂 نقل الموقع إلى تصنيف:</label>
           <div class="input-row">
             <select id="manageSiteCategory" class="text-input" style="cursor:pointer;"></select>
             <button type="button" class="btn-primary" id="manageMoveApplyBtn" style="white-space:nowrap; padding: 0 14px;">نقل الآن</button>
           </div>
-          <span class="field-hint">اختر التصنيف الجديد وسيتم نقل الموقع إليه فوراً وتحديث الأعداد.</span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="manageSiteName">اسم الموقع (العنوان الرئيسي بالبطاقة):</label>
+          <label class="form-label" for="manageSiteName">اسم الموقع:</label>
           <input type="text" id="manageSiteName" class="text-input" placeholder="اسم الموقع بالعربية">
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="manageSiteDesc">وصف الموقع (يظهر بالبطاقة مكان الاسم الإنجليزي):</label>
+          <label class="form-label" for="manageSiteDesc">وصف الموقع:</label>
           <input type="text" id="manageSiteDesc" class="text-input" placeholder="اكتب وصفاً مناسباً للموقع">
         </div>
 
@@ -1607,7 +1559,7 @@
         <div class="form-group" style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color);">
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #475569;">
             <span>إحصائية الاستخدام الحالية:</span>
-            <span id="manageVisitsText" style="font-weight: 700; color: #ea580c;">0 زيارة</span>
+            <span id="manageVisitsText" style="font-weight: 800; color: #ea580c;">0 زيارة</span>
           </div>
         </div>
       </div>
@@ -1663,9 +1615,44 @@
     </div>
   </div>
 
+  <!-- BACKUP & RESTORE MODAL -->
+  <div class="modal-overlay" id="backupModalOverlay">
+    <div class="modal-box" style="max-width: 460px;">
+      <div class="modal-header">
+        <div class="modal-title">💾 النسخ الاحتياطي وإدارة البيانات</div>
+        <button type="button" class="modal-close-btn" id="closeBackupModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: #475569; line-height: 1.6;">
+          يمكنك تحميل نسخة كاملة من قنواتك ومفضلاتك كملف خارجي أو استرجاعها في أي وقت لحمايتها نهائياً.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:6px;">
+          <button type="button" class="btn-primary" id="exportBackupBtn" style="display:flex; align-items:center; justify-content:center; gap:8px;">
+            📥 تصدير ملف النسخة الاحتياطية (JSON)
+          </button>
+
+          <label class="btn-secondary" style="display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; text-align:center;">
+            📤 استيراد نسخة محفوظة
+            <input type="file" id="importBackupInput" accept=".json" style="display:none;">
+          </label>
+        </div>
+
+        <div style="border-top:1px solid var(--border-color); padding-top:12px; margin-top:8px;">
+          <button type="button" class="btn-danger" id="resetDefaultsBtn" style="width:100%;">
+            ⚠️ إعادة الضبط للقنوات الأربع الافتراضية
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="cancelBackupBtn">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
   <!-- DELETE CONFIRMATION MODAL -->
   <div class="modal-overlay" id="deleteModalOverlay">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width: 420px;">
       <div class="modal-header">
         <div class="modal-title">🗑️ تأكيد الإزالة</div>
         <button type="button" class="modal-close-btn" id="closeDeleteModalBtn">&times;</button>
@@ -1684,35 +1671,16 @@
     </div>
   </div>
 
-  <!-- EXIT CONFIRMATION MODAL (Hardware Back Interception) -->
-  <div class="modal-overlay" id="exitModalOverlay">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div class="modal-title">🚪 تأكيد الخروج</div>
-        <button type="button" class="modal-close-btn" id="closeExitModalBtn">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p style="font-size: 0.95rem; color: #334155; line-height: 1.6;">
-          هل تريد بالتأكيد الخروج من تطبيق <strong>أخبار اليوم</strong>؟
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-secondary" id="cancelExitBtn">البقاء في التطبيق</button>
-        <button type="button" class="btn-danger" id="confirmExitBtn">نعم، خروج</button>
-      </div>
-    </div>
-  </div>
-
   <!-- MANUAL PASTE MODAL -->
   <div class="modal-overlay" id="pasteModalOverlay">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width: 420px;">
       <div class="modal-header">
         <div class="modal-title">📋 لصق الرابط يدويًا</div>
         <button type="button" class="modal-close-btn" id="closePasteModalBtn">&times;</button>
       </div>
       <div class="modal-body">
         <p style="font-size: 0.85rem; color: var(--text-muted);">
-          تعذر الوصول المباشر للحافظة؛ يرجى لصق الرابط في الحقل أدناه:
+          يرجى لصق الرابط في الحقل أدناه:
         </p>
         <input type="text" id="manualPasteInput" class="text-input" placeholder="https://..." dir="ltr">
       </div>
@@ -1728,1573 +1696,168 @@
 
   <script>
     // ========================================================
-    // COMPLETE INTERNAL MASTER DIRECTORY (90 SITES EMBEDDED)
+    // COMPLETE INTERNAL MASTER DIRECTORY (ALL 90 SITES)
     // ========================================================
     const MASTER_DIRECTORY = [
-    {
-        "id": "site_aljazeera",
-        "name": "شبكة الجزيرة نت",
-        "description": "تغطية إخبارية مستمرة وتحليلات على مدار الساعة",
-        "domain": "aljazeera.net",
-        "url": "https://www.aljazeera.net",
-        "category": "arab",
-        "translate": false,
-        "tags": "الجزيرة قطر أخبار عاجل"
-    },
-    {
-        "id": "site_motqdmoun",
-        "name": "موقع المتقدمون",
-        "description": "منصة إخبارية فلسطينية شاملة وتحديثات وفرص",
-        "domain": "motqdmoun.com",
-        "url": "https://www.motqdmoun.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "المتقدمون فلسطين غزة أخبار وظائف"
-    },
-    {
-        "id": "site_maan",
-        "name": "وكالة معا الإخبارية",
-        "description": "وكالة أنباء فلسطينية مستقلة وشاملة",
-        "domain": "maannews.net",
-        "url": "https://www.maannews.net",
-        "category": "palestine",
-        "translate": false,
-        "tags": "معا فلسطين الضفة غزة القدس"
-    },
-    {
-        "id": "site_wafa",
-        "name": "وكالة وفا الفلسطينية",
-        "description": "وكالة الأنباء والمعلومات الفلسطينية الرسمية",
-        "domain": "wafa.ps",
-        "url": "https://www.wafa.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "وفا رفا فلسطين رام الله رسمية"
-    },
-    {
-        "id": "dir_5",
-        "name": "جريدة القدس",
-        "description": "صحيفة يومية سياسية جامعة",
-        "domain": "alquds.com",
-        "url": "https://www.alquds.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "جريدة القدس"
-    },
-    {
-        "id": "dir_6",
-        "name": "صحيفة الأيام الفلسطينية",
-        "description": "صحيفة فلسطينية يومية برام الله",
-        "domain": "al-ayyam.ps",
-        "url": "https://www.al-ayyam.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "صحيفة الأيام الفلسطينية"
-    },
-    {
-        "id": "dir_7",
-        "name": "المركز الفلسطيني للإعلام",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "palinfo.com",
-        "url": "https://www.palinfo.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "المركز الفلسطيني للإعلام"
-    },
-    {
-        "id": "dir_8",
-        "name": "موقع عرب 48",
-        "description": "أخبار الداخل الفلسطيني والمنطقة",
-        "domain": "arab48.com",
-        "url": "https://www.arab48.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "موقع عرب 48"
-    },
-    {
-        "id": "dir_9",
-        "name": "وكالة الأنباء الأردنية (بترا)",
-        "description": "وكالة الأنباء الأردنية الرسمية",
-        "domain": "petra.gov.jo",
-        "url": "https://www.petra.gov.jo",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء الأردنية (بترا)"
-    },
-    {
-        "id": "dir_10",
-        "name": "وكالة عمون الإخبارية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "ammonnews.net",
-        "url": "https://www.ammonnews.net",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة عمون الإخبارية"
-    },
-    {
-        "id": "dir_11",
-        "name": "جريدة الغد الأردنية",
-        "description": "يومية أردنية شاملة",
-        "domain": "alghad.com",
-        "url": "https://alghad.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الغد الأردنية"
-    },
-    {
-        "id": "dir_12",
-        "name": "جريدة الدستور الأردنية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "addustour.com",
-        "url": "https://www.addustour.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الدستور الأردنية"
-    },
-    {
-        "id": "dir_13",
-        "name": "صحيفة النهار اللبنانية",
-        "description": "صحيفة سياسية يومية من بيروت",
-        "domain": "annahar.com",
-        "url": "https://www.annahar.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة النهار اللبنانية"
-    },
-    {
-        "id": "dir_14",
-        "name": "جريدة الأخبار اللبنانية",
-        "description": "صحيفة سياسية يومية من بيروت",
-        "domain": "al-akhbar.com",
-        "url": "https://al-akhbar.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الأخبار اللبنانية"
-    },
-    {
-        "id": "dir_15",
-        "name": "لوريون لو جور (L'Orient-Le Jour)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "lorientlejour.com",
-        "url": "https://www.lorientlejour.com",
-        "category": "press",
-        "translate": false,
-        "tags": "لوريون لو جور (L'Orient-Le Jour)"
-    },
-    {
-        "id": "dir_16",
-        "name": "الوكالة العربية السورية للأنباء (سانا)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "sana.sy",
-        "url": "https://sana.sy",
-        "category": "press",
-        "translate": false,
-        "tags": "الوكالة العربية السورية للأنباء (سانا)"
-    },
-    {
-        "id": "dir_17",
-        "name": "عنب بلدي",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "enabbaladi.net",
-        "url": "https://www.enabbaladi.net",
-        "category": "press",
-        "translate": false,
-        "tags": "عنب بلدي"
-    },
-    {
-        "id": "dir_18",
-        "name": "بوابة الأهرام المصرية",
-        "description": "أعرق مؤسسة صحفية مصرية",
-        "domain": "ahram.org.eg",
-        "url": "https://gate.ahram.org.eg",
-        "category": "press",
-        "translate": false,
-        "tags": "بوابة الأهرام المصرية"
-    },
-    {
-        "id": "dir_19",
-        "name": "المصري اليوم",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "almasryalyoum.com",
-        "url": "https://www.almasryalyoum.com",
-        "category": "press",
-        "translate": false,
-        "tags": "المصري اليوم"
-    },
-    {
-        "id": "dir_20",
-        "name": "اليوم السابع",
-        "description": "صحيفة وموقع إخباري مصري عاجل",
-        "domain": "youm7.com",
-        "url": "https://www.youm7.com",
-        "category": "press",
-        "translate": false,
-        "tags": "اليوم السابع"
-    },
-    {
-        "id": "dir_21",
-        "name": "بوابة الشروق",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "shorouknews.com",
-        "url": "https://www.shorouknews.com",
-        "category": "press",
-        "translate": false,
-        "tags": "بوابة الشروق"
-    },
-    {
-        "id": "dir_22",
-        "name": "مصراوي",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "masrawy.com",
-        "url": "https://www.masrawy.com",
-        "category": "press",
-        "translate": false,
-        "tags": "مصراوي"
-    },
-    {
-        "id": "dir_23",
-        "name": "هسبريس المغربية",
-        "description": "جريدة إلكترونية مغربية رائدة",
-        "domain": "hespress.com",
-        "url": "https://www.hespress.com",
-        "category": "press",
-        "translate": false,
-        "tags": "هسبريس المغربية"
-    },
-    {
-        "id": "dir_24",
-        "name": "لو 360 (Le360)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "le360.ma",
-        "url": "https://le360.ma",
-        "category": "press",
-        "translate": false,
-        "tags": "لو 360 (Le360)"
-    },
-    {
-        "id": "dir_25",
-        "name": "وكالة الأنباء الجزائرية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "aps.dz",
-        "url": "https://www.aps.dz",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء الجزائرية"
-    },
-    {
-        "id": "dir_26",
-        "name": "النهار أونلاين الجزائرية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "ennaharonline.com",
-        "url": "https://www.ennaharonline.com",
-        "category": "press",
-        "translate": false,
-        "tags": "النهار أونلاين الجزائرية"
-    },
-    {
-        "id": "dir_27",
-        "name": "وكالة تونس إفريقيا للأنباء",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "tap.info.tn",
-        "url": "https://www.tap.info.tn",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة تونس إفريقيا للأنباء"
-    },
-    {
-        "id": "dir_28",
-        "name": "موزاييك إف إم",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "mosaiquefm.net",
-        "url": "https://www.mosaiquefm.net",
-        "category": "press",
-        "translate": false,
-        "tags": "موزاييك إف إم"
-    },
-    {
-        "id": "dir_29",
-        "name": "وكالة الأنباء الليبية (وال)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "lana.gov.ly",
-        "url": "https://lana.gov.ly",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء الليبية (وال)"
-    },
-    {
-        "id": "dir_30",
-        "name": "بوابة الوسط الليبية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "alwasat.ly",
-        "url": "https://www.alwasat.ly",
-        "category": "press",
-        "translate": false,
-        "tags": "بوابة الوسط الليبية"
-    },
-    {
-        "id": "dir_31",
-        "name": "الوكالة الموريتانية للأنباء",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "ami.mr",
-        "url": "https://www.ami.mr",
-        "category": "press",
-        "translate": false,
-        "tags": "الوكالة الموريتانية للأنباء"
-    },
-    {
-        "id": "dir_32",
-        "name": "وكالة السودان للأنباء (سونا)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "suna-sd.net",
-        "url": "https://suna-sd.net",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة السودان للأنباء (سونا)"
-    },
-    {
-        "id": "dir_33",
-        "name": "وكالة الأنباء السعودية (واس)",
-        "description": "وكالة الأنباء الرسمية للمملكة",
-        "domain": "spa.gov.sa",
-        "url": "https://www.spa.gov.sa",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء السعودية (واس)"
-    },
-    {
-        "id": "dir_34",
-        "name": "جريدة الرياض",
-        "description": "صحيفة يومية سياسية تصدر بالرياض",
-        "domain": "alriyadh.com",
-        "url": "https://www.alriyadh.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الرياض"
-    },
-    {
-        "id": "dir_35",
-        "name": "صحيفة الشرق الأوسط",
-        "description": "جريدة العرب الدولية تصدر من لندن",
-        "domain": "aawsat.com",
-        "url": "https://aawsat.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الشرق الأوسط"
-    },
-    {
-        "id": "dir_36",
-        "name": "صحيفة سبق الإلكترونية",
-        "description": "صحيفة إلكترونية سعودية شاملة",
-        "domain": "sabq.org",
-        "url": "https://sabq.org",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة سبق الإلكترونية"
-    },
-    {
-        "id": "dir_37",
-        "name": "وكالة أنباء الإمارات (وام)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "wam.ae",
-        "url": "https://www.wam.ae",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة أنباء الإمارات (وام)"
-    },
-    {
-        "id": "dir_38",
-        "name": "صحيفة البيان الإماراتية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "albayan.ae",
-        "url": "https://www.albayan.ae",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة البيان الإماراتية"
-    },
-    {
-        "id": "dir_39",
-        "name": "الإمارات اليوم",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "emaratalyoum.com",
-        "url": "https://www.emaratalyoum.com",
-        "category": "press",
-        "translate": false,
-        "tags": "الإمارات اليوم"
-    },
-    {
-        "id": "dir_40",
-        "name": "صحيفة الاتحاد الإماراتية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "alittihad.ae",
-        "url": "https://www.alittihad.ae",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الاتحاد الإماراتية"
-    },
-    {
-        "id": "dir_41",
-        "name": "وكالة الأنباء القطرية (قنا)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "qna.org.qa",
-        "url": "https://www.qna.org.qa",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء القطرية (قنا)"
-    },
-    {
-        "id": "dir_42",
-        "name": "جريدة الوطن القطرية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "al-watan.com",
-        "url": "https://www.al-watan.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الوطن القطرية"
-    },
-    {
-        "id": "dir_43",
-        "name": "وكالة الأنباء الكويتية (كونا)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "kuna.net.kw",
-        "url": "https://www.kuna.net.kw",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء الكويتية (كونا)"
-    },
-    {
-        "id": "dir_44",
-        "name": "جريدة الجريدة الكويتية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "aljarida.com",
-        "url": "https://www.aljarida.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الجريدة الكويتية"
-    },
-    {
-        "id": "dir_45",
-        "name": "وكالة الأنباء العمانية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "omannews.gov.om",
-        "url": "https://www.omannews.gov.om",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء العمانية"
-    },
-    {
-        "id": "dir_46",
-        "name": "جريدة عمان",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "omandaily.om",
-        "url": "https://omandaily.om",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة عمان"
-    },
-    {
-        "id": "dir_47",
-        "name": "وكالة أنباء البحرين (بنا)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "bna.bh",
-        "url": "https://www.bna.bh",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة أنباء البحرين (بنا)"
-    },
-    {
-        "id": "dir_48",
-        "name": "وكالة الأنباء العراقية (واع)",
-        "description": "الوكالة الرسمية لجمهورية العراق",
-        "domain": "ina.iq",
-        "url": "https://www.ina.iq",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء العراقية (واع)"
-    },
-    {
-        "id": "dir_49",
-        "name": "جريدة الصباح العراقية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "alsabaah.iq",
-        "url": "https://alsabaah.iq",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الصباح العراقية"
-    },
-    {
-        "id": "dir_50",
-        "name": "قناة السومرية نيوز",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "alsumaria.tv",
-        "url": "https://www.alsumaria.tv",
-        "category": "press",
-        "translate": false,
-        "tags": "قناة السومرية نيوز"
-    },
-    {
-        "id": "dir_51",
-        "name": "وكالة الأنباء اليمنية (سبأ)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "saba.ye",
-        "url": "https://www.saba.ye",
-        "category": "press",
-        "translate": false,
-        "tags": "وكالة الأنباء اليمنية (سبأ)"
-    },
-    {
-        "id": "dir_52",
-        "name": "قناة العربية",
-        "description": "الأخبار العاجلة والبرامج السياسية",
-        "domain": "alarabiya.net",
-        "url": "https://www.alarabiya.net",
-        "category": "arab",
-        "translate": false,
-        "tags": "قناة العربية"
-    },
-    {
-        "id": "dir_53",
-        "name": "سكاي نيوز عربية",
-        "description": "أخبار العالم والشرق الأوسط",
-        "domain": "skynewsarabia.com",
-        "url": "https://www.skynewsarabia.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "سكاي نيوز عربية"
-    },
-    {
-        "id": "dir_54",
-        "name": "سي إن إن بالعربية",
-        "description": "شبكة سي إن إن الإخبارية بالعربية",
-        "domain": "arabic.cnn.com",
-        "url": "https://arabic.cnn.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "سي إن إن بالعربية"
-    },
-    {
-        "id": "dir_55",
-        "name": "بي بي سي عربي",
-        "description": "هيئة الإذاعة البريطانية بالعربية",
-        "domain": "bbc.com/arabic",
-        "url": "https://www.bbc.com/arabic",
-        "category": "arab",
-        "translate": false,
-        "tags": "بي بي سي عربي"
-    },
-    {
-        "id": "dir_56",
-        "name": "فرانس 24 عربي",
-        "description": "الأخبار الدولية على مدار الساعة",
-        "domain": "france24.com/ar",
-        "url": "https://www.france24.com/ar",
-        "category": "arab",
-        "translate": false,
-        "tags": "فرانس 24 عربي"
-    },
-    {
-        "id": "dir_57",
-        "name": "دويتشه فيله (DW عربية)",
-        "description": "صوت ألمانيا بالعربية",
-        "domain": "dw.com/ar",
-        "url": "https://www.dw.com/ar",
-        "category": "arab",
-        "translate": false,
-        "tags": "دويتشه فيله (DW عربية)"
-    },
-    {
-        "id": "dir_58",
-        "name": "روسيا اليوم (RT Arabic)",
-        "description": "شبكة إخبارية روسية ناطقة بالعربية",
-        "domain": "arabic.rt.com",
-        "url": "https://arabic.rt.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "روسيا اليوم (RT Arabic)"
-    },
-    {
-        "id": "dir_59",
-        "name": "الشرق للأخبار",
-        "description": "منصة الأخبار الاقتصادية والمالية",
-        "domain": "asharq.com",
-        "url": "https://asharq.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "الشرق للأخبار"
-    },
-    {
-        "id": "dir_60",
-        "name": "شبكة الميادين الإعلامية",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "almayadeen.net",
-        "url": "https://almayadeen.net",
-        "category": "press",
-        "translate": false,
-        "tags": "شبكة الميادين الإعلامية"
-    },
-    {
-        "id": "dir_61",
-        "name": "قناة الحرة",
-        "description": "قناة فضائية أمريكية بالعربية",
-        "domain": "alhurra.com",
-        "url": "https://www.alhurra.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "قناة الحرة"
-    },
-    {
-        "id": "dir_62",
-        "name": "إندبندنت عربية",
-        "description": "صحيفة إندبندنت البريطانية بالعربية",
-        "domain": "independentarabia.com",
-        "url": "https://www.independentarabia.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "إندبندنت عربية"
-    },
-    {
-        "id": "dir_63",
-        "name": "العربي الجديد",
-        "description": "صحيفة يومية وموقع إخباري رصين",
-        "domain": "alaraby.co.uk",
-        "url": "https://www.alaraby.co.uk",
-        "category": "arab",
-        "translate": false,
-        "tags": "العربي الجديد"
-    },
-    {
-        "id": "dir_64",
-        "name": "إيلاف",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "elaph.com",
-        "url": "https://elaph.com",
-        "category": "press",
-        "translate": false,
-        "tags": "إيلاف"
-    },
-    {
-        "id": "dir_65",
-        "name": "نون بوست",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "noonpost.com",
-        "url": "https://www.noonpost.com",
-        "category": "press",
-        "translate": false,
-        "tags": "نون بوست"
-    },
-    {
-        "id": "dir_66",
-        "name": "رويترز (Reuters)",
-        "description": "وكالة الأنباء العالمية رويترز",
-        "domain": "reuters.com",
-        "url": "https://www.reuters.com",
-        "category": "agencies",
-        "translate": true,
-        "tags": "رويترز (Reuters)"
-    },
-    {
-        "id": "dir_67",
-        "name": "أسوشيتد برس (Associated Press)",
-        "description": "وكالة الأنباء الأمريكية الكبرى",
-        "domain": "apnews.com",
-        "url": "https://apnews.com",
-        "category": "agencies",
-        "translate": true,
-        "tags": "أسوشيتد برس (Associated Press)"
-    },
-    {
-        "id": "dir_68",
-        "name": "وكالة فرانس برس (AFP)",
-        "description": "أقدم وكالة أنباء عالمية بالفرنسية والعربية",
-        "domain": "afp.com",
-        "url": "https://www.afp.com",
-        "category": "agencies",
-        "translate": false,
-        "tags": "وكالة فرانس برس (AFP)"
-    },
-    {
-        "id": "dir_69",
-        "name": "بلومبرغ (Bloomberg)",
-        "description": "Bloomberg News الاقتصادية والمالية",
-        "domain": "bloomberg.com",
-        "url": "https://www.bloomberg.com",
-        "category": "world",
-        "translate": true,
-        "tags": "بلومبرغ (Bloomberg)"
-    },
-    {
-        "id": "dir_70",
-        "name": "نيويورك تايمز (The New York Times)",
-        "description": "The New York Times (مترجم)",
-        "domain": "nytimes.com",
-        "url": "https://www.nytimes.com",
-        "category": "world",
-        "translate": true,
-        "tags": "نيويورك تايمز (The New York Times)"
-    },
-    {
-        "id": "dir_71",
-        "name": "واشنطن بوست (The Washington Post)",
-        "description": "The Washington Post (مترجم)",
-        "domain": "washingtonpost.com",
-        "url": "https://www.washingtonpost.com",
-        "category": "world",
-        "translate": true,
-        "tags": "واشنطن بوست (The Washington Post)"
-    },
-    {
-        "id": "dir_72",
-        "name": "وول ستريت جورنال (The Wall Street Journal)",
-        "description": "The Wall Street Journal المالية",
-        "domain": "wsj.com",
-        "url": "https://www.wsj.com",
-        "category": "world",
-        "translate": true,
-        "tags": "وول ستريت جورنال (The Wall Street Journal)"
-    },
-    {
-        "id": "dir_73",
-        "name": "سي إن إن العالمية (CNN)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "edition.cnn.com",
-        "url": "https://edition.cnn.com",
-        "category": "press",
-        "translate": false,
-        "tags": "سي إن إن العالمية (CNN)"
-    },
-    {
-        "id": "dir_74",
-        "name": "إيه بي سي نيوز (ABC News)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "abcnews.go.com",
-        "url": "https://abcnews.go.com",
-        "category": "world",
-        "translate": true,
-        "tags": "إيه بي سي نيوز (ABC News)"
-    },
-    {
-        "id": "dir_75",
-        "name": "سي بي إس نيوز (CBS News)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "cbsnews.com",
-        "url": "https://www.cbsnews.com",
-        "category": "world",
-        "translate": true,
-        "tags": "سي بي إس نيوز (CBS News)"
-    },
-    {
-        "id": "dir_76",
-        "name": "إن بي سي نيوز (NBC News)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "nbcnews.com",
-        "url": "https://www.nbcnews.com",
-        "category": "world",
-        "translate": true,
-        "tags": "إن بي سي نيوز (NBC News)"
-    },
-    {
-        "id": "dir_77",
-        "name": "فوكس نيوز (Fox News)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "foxnews.com",
-        "url": "https://www.foxnews.com",
-        "category": "world",
-        "translate": true,
-        "tags": "فوكس نيوز (Fox News)"
-    },
-    {
-        "id": "dir_78",
-        "name": "يو إس إيه توداي (USA Today)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "usatoday.com",
-        "url": "https://www.usatoday.com",
-        "category": "world",
-        "translate": true,
-        "tags": "يو إس إيه توداي (USA Today)"
-    },
-    {
-        "id": "dir_79",
-        "name": "بوليتيكو (Politico)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "politico.com",
-        "url": "https://www.politico.com",
-        "category": "world",
-        "translate": true,
-        "tags": "بوليتيكو (Politico)"
-    },
-    {
-        "id": "dir_80",
-        "name": "ذا هيل (The Hill)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "thehill.com",
-        "url": "https://thehill.com",
-        "category": "world",
-        "translate": true,
-        "tags": "ذا هيل (The Hill)"
-    },
-    {
-        "id": "dir_81",
-        "name": "الإذاعة الوطنية العامة الأمريكية (NPR)",
-        "description": "هيئة الإذاعة الوطنية العامة الأمريكية",
-        "domain": "npr.org",
-        "url": "https://www.npr.org",
-        "category": "agencies",
-        "translate": true,
-        "tags": "الإذاعة الوطنية العامة الأمريكية (NPR)"
-    },
-    {
-        "id": "dir_82",
-        "name": "مجلة تايم (TIME)",
-        "description": "TIME Magazine العالمية",
-        "domain": "time.com",
-        "url": "https://time.com",
-        "category": "world",
-        "translate": true,
-        "tags": "مجلة تايم (TIME)"
-    },
-    {
-        "id": "dir_83",
-        "name": "نيوزويك (Newsweek)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "newsweek.com",
-        "url": "https://www.newsweek.com",
-        "category": "world",
-        "translate": true,
-        "tags": "نيوزويك (Newsweek)"
-    },
-    {
-        "id": "dir_84",
-        "name": "سي إن بي سي (CNBC)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "cnbc.com",
-        "url": "https://www.cnbc.com",
-        "category": "world",
-        "translate": true,
-        "tags": "سي إن بي سي (CNBC)"
-    },
-    {
-        "id": "dir_85",
-        "name": "صحيفة الغارديان (The Guardian)",
-        "description": "The Guardian (مترجم)",
-        "domain": "theguardian.com",
-        "url": "https://www.theguardian.com",
-        "category": "world",
-        "translate": true,
-        "tags": "صحيفة الغارديان (The Guardian)"
-    },
-    {
-        "id": "dir_86",
-        "name": "ديلي تلغراف (The Daily Telegraph)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "telegraph.co.uk",
-        "url": "https://www.telegraph.co.uk",
-        "category": "world",
-        "translate": true,
-        "tags": "ديلي تلغراف (The Daily Telegraph)"
-    },
-    {
-        "id": "dir_87",
-        "name": "ذا تايمز البريطانية (The Times)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "thetimes.com",
-        "url": "https://www.thetimes.com",
-        "category": "world",
-        "translate": true,
-        "tags": "ذا تايمز البريطانية (The Times)"
-    },
-    {
-        "id": "dir_88",
-        "name": "فايننشال تايمز (Financial Times)",
-        "description": "Financial Times المتخصصة في المال والأعمال",
-        "domain": "ft.com",
-        "url": "https://www.ft.com",
-        "category": "world",
-        "translate": true,
-        "tags": "فايننشال تايمز (Financial Times)"
-    },
-    {
-        "id": "dir_89",
-        "name": "ذي إيكونوميست (The Economist)",
-        "description": "The Economist - شؤون الاقتصاد والسياسة",
-        "domain": "economist.com",
-        "url": "https://www.economist.com",
-        "category": "world",
-        "translate": true,
-        "tags": "ذي إيكونوميست (The Economist)"
-    },
-    {
-        "id": "dir_90",
-        "name": "ذا إندبندنت (The Independent)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "independent.co.uk",
-        "url": "https://www.independent.co.uk",
-        "category": "world",
-        "translate": true,
-        "tags": "ذا إندبندنت (The Independent)"
-    },
-    {
-        "id": "dir_91",
-        "name": "سكاي نيوز البريطانية (Sky News UK)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "news.sky.com",
-        "url": "https://news.sky.com",
-        "category": "press",
-        "translate": false,
-        "tags": "سكاي نيوز البريطانية (Sky News UK)"
-    },
-    {
-        "id": "dir_92",
-        "name": "صحيفة لوموند الفرنسية (Le Monde)",
-        "description": "Le Monde الفرنسية العريقة (مترجم)",
-        "domain": "lemonde.fr",
-        "url": "https://www.lemonde.fr",
-        "category": "world",
-        "translate": true,
-        "tags": "صحيفة لوموند الفرنسية (Le Monde)"
-    },
-    {
-        "id": "dir_93",
-        "name": "صحيفة لوفيغارو (Le Figaro)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "lefigaro.fr",
-        "url": "https://www.lefigaro.fr",
-        "category": "world",
-        "translate": true,
-        "tags": "صحيفة لوفيغارو (Le Figaro)"
-    },
-    {
-        "id": "dir_94",
-        "name": "دير شبيغل الألمانية (Der Spiegel)",
-        "description": "Der Spiegel الألمانية (مترجم)",
-        "domain": "spiegel.de",
-        "url": "https://www.spiegel.de",
-        "category": "world",
-        "translate": true,
-        "tags": "دير شبيغل الألمانية (Der Spiegel)"
-    },
-    {
-        "id": "dir_95",
-        "name": "فرانكفورتر ألغماينه تسايتونغ (FAZ)",
-        "description": "موقع وبوابة إخبارية",
-        "domain": "faz.net",
-        "url": "https://www.faz.net",
-        "category": "press",
-        "translate": false,
-        "tags": "فرانكفورتر ألغماينه تسايتونغ (FAZ)"
-    },
-    {
-        "id": "dir_96",
-        "name": "إل باييس الإسبانية (El País)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "elpais.com",
-        "url": "https://elpais.com",
-        "category": "world",
-        "translate": true,
-        "tags": "إل باييس الإسبانية (El País)"
-    },
-    {
-        "id": "dir_97",
-        "name": "إل موندو الإسبانية (El Mundo)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "elmundo.es",
-        "url": "https://www.elmundo.es",
-        "category": "world",
-        "translate": true,
-        "tags": "إل موندو الإسبانية (El Mundo)"
-    },
-    {
-        "id": "dir_98",
-        "name": "كورييري ديلا سيرا الإيطالية (Corriere della Sera)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "corriere.it",
-        "url": "https://www.corriere.it",
-        "category": "world",
-        "translate": true,
-        "tags": "كورييري ديلا سيرا الإيطالية (Corriere della Sera)"
-    },
-    {
-        "id": "dir_99",
-        "name": "وكالة أنسا الإيطالية (ANSA)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "ansa.it",
-        "url": "https://www.ansa.it",
-        "category": "world",
-        "translate": true,
-        "tags": "وكالة أنسا الإيطالية (ANSA)"
-    },
-    {
-        "id": "dir_100",
-        "name": "وكالة تاس الروسية (TASS)",
-        "description": "أخبار وتقارير دولية",
-        "domain": "tass.com",
-        "url": "https://tass.com",
-        "category": "world",
-        "translate": true,
-        "tags": "وكالة تاس الروسية (TASS)"
-    },
-    {
-        "id": "dir_101",
-        "name": "شبكة قدس الإخبارية",
-        "description": "نبض الشارع والشباب الفلسطيني",
-        "domain": "qudsn.co",
-        "url": "https://qudsn.co",
-        "category": "palestine",
-        "translate": false,
-        "tags": "شبكة قدس الإخبارية"
-    },
-    {
-        "id": "dir_102",
-        "name": "وكالة صفا الفلسطينية",
-        "description": "وكالة الصحافة الفلسطينية المستقلة",
-        "domain": "safa.ps",
-        "url": "https://safa.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "وكالة صفا الفلسطينية"
-    },
-    {
-        "id": "dir_103",
-        "name": "وكالة شهاب للأنباء",
-        "description": "وكالة أنباء فلسطينية شاملة",
-        "domain": "shehabnews.com",
-        "url": "https://shehabnews.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "وكالة شهاب للأنباء"
-    },
-    {
-        "id": "dir_104",
-        "name": "وكالة قدس نت للأنباء",
-        "description": "أخبار القدس والمحافظات الفلسطينية",
-        "domain": "qudsnet.com",
-        "url": "https://qudsnet.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "وكالة قدس نت للأنباء"
-    },
-    {
-        "id": "dir_105",
-        "name": "صحيفة الحياة الجديدة",
-        "description": "صحيفة يومية رسمية فلسطينية",
-        "domain": "alhayat-j.com",
-        "url": "https://www.alhayat-j.com",
-        "category": "palestine",
-        "translate": false,
-        "tags": "صحيفة الحياة الجديدة"
-    },
-    {
-        "id": "dir_106",
-        "name": "تلفزيون فلسطين الرسمي",
-        "description": "هيئة الإذاعة والتلفزيون الفلسطينية",
-        "domain": "pbc.ps",
-        "url": "https://www.pbc.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "تلفزيون فلسطين الرسمي"
-    },
-    {
-        "id": "dir_107",
-        "name": "فضائية الأقصى",
-        "description": "شبكة الأقصى الإعلامية",
-        "domain": "aqsatv.ps",
-        "url": "https://www.aqsatv.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "فضائية الأقصى"
-    },
-    {
-        "id": "dir_108",
-        "name": "إذاعة أجيال",
-        "description": "شبكة أجيال الإذاعية برام الله",
-        "domain": "ajyal.fm",
-        "url": "https://www.ajyal.fm",
-        "category": "palestine",
-        "translate": false,
-        "tags": "إذاعة أجيال"
-    },
-    {
-        "id": "dir_109",
-        "name": "راديو بيت لحم 2000",
-        "description": "إذاعة فلسطينية مستقلة",
-        "domain": "rb2000.ps",
-        "url": "https://www.rb2000.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "راديو بيت لحم 2000"
-    },
-    {
-        "id": "dir_110",
-        "name": "موقع النجاح الإخباري",
-        "description": "مركز النجاح الإعلامي - نابلس",
-        "domain": "nn.ps",
-        "url": "https://www.nn.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "موقع النجاح الإخباري"
-    },
-    {
-        "id": "dir_111",
-        "name": "وكالة وطن للأنباء",
-        "description": "وكالة أنباء وتلفزيون وطن المستقل",
-        "domain": "wattan.net",
-        "url": "https://www.wattan.net",
-        "category": "palestine",
-        "translate": false,
-        "tags": "وكالة وطن للأنباء"
-    },
-    {
-        "id": "dir_112",
-        "name": "شبكة راية الإعلامية",
-        "description": "شبكة إخبارية وإذاعية برام الله",
-        "domain": "raya.ps",
-        "url": "https://www.raya.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "شبكة راية الإعلامية"
-    },
-    {
-        "id": "dir_113",
-        "name": "راديو ناس",
-        "description": "أخبار وتقارير فلسطينية مجتمعية",
-        "domain": "nas.ps",
-        "url": "https://www.nas.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "راديو ناس"
-    },
-    {
-        "id": "dir_114",
-        "name": "موقع مدار نيوز",
-        "description": "تحليلات وترجمات للشأن الإسرائيلي",
-        "domain": "madar.news",
-        "url": "https://www.madar.news",
-        "category": "palestine",
-        "translate": false,
-        "tags": "موقع مدار نيوز"
-    },
-    {
-        "id": "dir_115",
-        "name": "موقع بوست 24",
-        "description": "شبكة إخبارية فلسطينية منوعة",
-        "domain": "post24.ps",
-        "url": "https://www.post24.ps",
-        "category": "palestine",
-        "translate": false,
-        "tags": "موقع بوست 24"
-    },
-    {
-        "id": "dir_116",
-        "name": "قناة الحدث",
-        "description": "تغطيات حية للأحداث الميدانية",
-        "domain": "alhadath.net",
-        "url": "https://www.alhadath.net",
-        "category": "arab",
-        "translate": false,
-        "tags": "قناة الحدث"
-    },
-    {
-        "id": "dir_117",
-        "name": "التلفزيون العربي",
-        "description": "قناة إخبارية منوعة شاملة",
-        "domain": "alaraby.com",
-        "url": "https://www.alaraby.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "التلفزيون العربي"
-    },
-    {
-        "id": "dir_118",
-        "name": "قناة الغد الإخبارية",
-        "description": "أول قناة إخبارية عربية من القاهرة",
-        "domain": "alghad.tv",
-        "url": "https://www.alghad.tv",
-        "category": "arab",
-        "translate": false,
-        "tags": "قناة الغد الإخبارية"
-    },
-    {
-        "id": "dir_119",
-        "name": "موقع إرم نيوز الإخباري",
-        "description": "تغطية سياسية واقتصادية خليجية وعربية",
-        "domain": "eremnews.com",
-        "url": "https://eremnews.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "موقع إرم نيوز الإخباري"
-    },
-    {
-        "id": "dir_120",
-        "name": "يورونيوز عربي",
-        "description": "الأخبار الأوروبية والعالمية",
-        "domain": "arabic.euronews.com",
-        "url": "https://arabic.euronews.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "يورونيوز عربي"
-    },
-    {
-        "id": "dir_121",
-        "name": "TRT عربي",
-        "description": "التلفزيون التركي باللغة العربية",
-        "domain": "trtarabi.com",
-        "url": "https://www.trtarabi.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "TRT عربي"
-    },
-    {
-        "id": "dir_122",
-        "name": "إذاعة مونت كارلو الدولية",
-        "description": "إذاعة فرنسية عربية دولية",
-        "domain": "mc-doualiya.com",
-        "url": "https://www.mc-doualiya.com",
-        "category": "arab",
-        "translate": false,
-        "tags": "إذاعة مونت كارلو الدولية"
-    },
-    {
-        "id": "dir_123",
-        "name": "منصة رصيف 22",
-        "description": "منصة صحفية حرة ومستقلة",
-        "domain": "raseef22.net",
-        "url": "https://www.raseef22.net",
-        "category": "arab",
-        "translate": false,
-        "tags": "منصة رصيف 22"
-    },
-    {
-        "id": "dir_124",
-        "name": "صحيفة القدس العربي",
-        "description": "صحيفة يومية سياسية تصدر بلندن",
-        "domain": "alquds.co.uk",
-        "url": "https://www.alquds.co.uk",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة القدس العربي"
-    },
-    {
-        "id": "dir_125",
-        "name": "صحيفة الرأي الأردنية",
-        "description": "المؤسسة الصحفية الأردنية",
-        "domain": "alrai.com",
-        "url": "https://alrai.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الرأي الأردنية"
-    },
-    {
-        "id": "dir_126",
-        "name": "جريدة القبس الكويتية",
-        "description": "صحيفة كويتية يومية سياسية",
-        "domain": "alqabas.com",
-        "url": "https://www.alqabas.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة القبس الكويتية"
-    },
-    {
-        "id": "dir_127",
-        "name": "صحيفة الراي الكويتية",
-        "description": "يومية سياسية شاملة من الكويت",
-        "domain": "alraimedia.com",
-        "url": "https://www.alraimedia.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الراي الكويتية"
-    },
-    {
-        "id": "dir_128",
-        "name": "صحيفة عكاظ السعودية",
-        "description": "صحيفة يومية تصدر من جدة",
-        "domain": "okaz.com.sa",
-        "url": "https://www.okaz.com.sa",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة عكاظ السعودية"
-    },
-    {
-        "id": "dir_129",
-        "name": "صحيفة الاتحاد الإماراتية",
-        "description": "أول صحيفة يومية بأبوظبي",
-        "domain": "aletihad.ae",
-        "url": "https://www.aletihad.ae",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الاتحاد الإماراتية"
-    },
-    {
-        "id": "dir_130",
-        "name": "جريدة الخليج الإماراتية",
-        "description": "دار الخليج للصحافة والطباعة",
-        "domain": "alkhaleej.ae",
-        "url": "https://www.alkhaleej.ae",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الخليج الإماراتية"
-    },
-    {
-        "id": "dir_131",
-        "name": "جريدة الوطن العمانية",
-        "description": "أول صحيفة يومية بسلطنة عمان",
-        "domain": "alwatan.com",
-        "url": "https://alwatan.com",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الوطن العمانية"
-    },
-    {
-        "id": "dir_132",
-        "name": "صحيفة الشروق الجزائرية",
-        "description": "يومية إخبارية جزائرية مستقلة",
-        "domain": "echoroukonline.com",
-        "url": "https://www.echoroukonline.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الشروق الجزائرية"
-    },
-    {
-        "id": "dir_133",
-        "name": "صحيفة الصباح التونسية",
-        "description": "أقدم الصحف اليومية بتونس",
-        "domain": "assabah.com.tn",
-        "url": "https://www.assabah.com.tn",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الصباح التونسية"
-    },
-    {
-        "id": "dir_134",
-        "name": "جريدة المدى العراقية",
-        "description": "صحيفة يومية عراقية مستقلة",
-        "domain": "almadapaper.net",
-        "url": "https://almadapaper.net",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة المدى العراقية"
-    },
-    {
-        "id": "dir_135",
-        "name": "شبكة روداو الإعلامية",
-        "description": "شبكة إخبارية من كردستان العراق",
-        "domain": "rudaw.net/arabic",
-        "url": "https://www.rudaw.net/arabic",
-        "category": "press",
-        "translate": false,
-        "tags": "شبكة روداو الإعلامية"
-    },
-    {
-        "id": "dir_136",
-        "name": "صحيفة الثورة السورية",
-        "description": "صحيفة سياسية يومية بدمشق",
-        "domain": "thawra.sy",
-        "url": "https://thawra.sy",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الثورة السورية"
-    },
-    {
-        "id": "dir_137",
-        "name": "جريدة الوطن السورية",
-        "description": "صحيفة يومية سياسية سورية",
-        "domain": "alwatan.sy",
-        "url": "https://alwatan.sy",
-        "category": "press",
-        "translate": false,
-        "tags": "جريدة الوطن السورية"
-    },
-    {
-        "id": "dir_138",
-        "name": "المشهد اليمني",
-        "description": "موقع إخباري يمني مستقل",
-        "domain": "almashhad-alyemeni.com",
-        "url": "https://almashhad-alyemeni.com",
-        "category": "press",
-        "translate": false,
-        "tags": "المشهد اليمني"
-    },
-    {
-        "id": "dir_139",
-        "name": "صحيفة سودانايل الإخبارية",
-        "description": "منبر إخباري وثقافي سوداني شامل",
-        "domain": "sudanile.com",
-        "url": "https://sudanile.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة سودانايل الإخبارية"
-    },
-    {
-        "id": "dir_140",
-        "name": "صحيفة الأيام البحرينية",
-        "description": "صحيفة يومية سياسية بالمنامة",
-        "domain": "alayam.com",
-        "url": "https://www.alayam.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة الأيام البحرينية"
-    },
-    {
-        "id": "dir_141",
-        "name": "صحيفة رأي اليوم",
-        "description": "صحيفة إلكترونية مستقلة لعبد الباري عطوان",
-        "domain": "raialyoum.com",
-        "url": "https://www.raialyoum.com",
-        "category": "press",
-        "translate": false,
-        "tags": "صحيفة رأي اليوم"
-    },
-    {
-        "id": "dir_142",
-        "name": "وكالة الأناضول التركية",
-        "description": "وكالة أنباء تركيا الرسمية بالعربية",
-        "domain": "aa.com.tr/ar",
-        "url": "https://www.aa.com.tr/ar",
-        "category": "agencies",
-        "translate": false,
-        "tags": "وكالة الأناضول التركية"
-    },
-    {
-        "id": "dir_143",
-        "name": "وكالة شينخوا الصينية",
-        "description": "وكالة أنباء الصين الجديدة بالعربية",
-        "domain": "arabic.news.cn",
-        "url": "https://arabic.news.cn",
-        "category": "agencies",
-        "translate": false,
-        "tags": "وكالة شينخوا الصينية"
-    },
-    {
-        "id": "dir_144",
-        "name": "وكالة يونهاب الكورية",
-        "description": "وكالة أنباء كوريا الجنوبية بالعربية",
-        "domain": "ynanews.com/ar",
-        "url": "https://en.yna.co.kr",
-        "category": "agencies",
-        "translate": true,
-        "tags": "وكالة يونهاب الكورية"
-    },
-    {
-        "id": "dir_145",
-        "name": "صوت أمريكا (VOA)",
-        "description": "شبكة صوت أمريكا الإخبارية بالعربية",
-        "domain": "learningenglish.voanews.com",
-        "url": "https://www.voanews.com",
-        "category": "agencies",
-        "translate": true,
-        "tags": "صوت أمريكا (VOA)"
-    },
-    {
-        "id": "dir_146",
-        "name": "وكالة كيودو اليابانية",
-        "description": "أكبر وكالة أنباء مستقلة باليابان",
-        "domain": "kyodonews.net",
-        "url": "https://english.kyodonews.net",
-        "category": "agencies",
-        "translate": true,
-        "tags": "وكالة كيودو اليابانية"
-    },
-    {
-        "id": "dir_147",
-        "name": "التلفزيون السويسري (SWI)",
-        "description": "بوابة سويسرا الإخبارية بالعربية",
-        "domain": "swissinfo.ch/ara",
-        "url": "https://www.swissinfo.ch/ara",
-        "category": "agencies",
-        "translate": false,
-        "tags": "التلفزيون السويسري (SWI)"
-    },
-    {
-        "id": "dir_148",
-        "name": "مجلة فورين بوليسي",
-        "description": "Foreign Policy للشؤون الدولية",
-        "domain": "foreignpolicy.com",
-        "url": "https://foreignpolicy.com",
-        "category": "world",
-        "translate": true,
-        "tags": "مجلة فورين بوليسي"
-    },
-    {
-        "id": "dir_149",
-        "name": "مجلة فورين أفيرز",
-        "description": "Foreign Affairs للتحليلات الإستراتيجية",
-        "domain": "foreignaffairs.com",
-        "url": "https://www.foreignaffairs.com",
-        "category": "world",
-        "translate": true,
-        "tags": "مجلة فورين أفيرز"
-    },
-    {
-        "id": "dir_150",
-        "name": "صحيفة إل باييس الإسبانية",
-        "description": "El País الإسبانية الكبرى (مترجم)",
-        "domain": "elpais.com",
-        "url": "https://english.elpais.com",
-        "category": "world",
-        "translate": true,
-        "tags": "صحيفة إل باييس الإسبانية"
-    },
-    {
-        "id": "dir_151",
-        "name": "ياهو نيوز الإخباري",
-        "description": "Yahoo News تغطية الأخبار الشاملة",
-        "domain": "news.yahoo.com",
-        "url": "https://news.yahoo.com",
-        "category": "world",
-        "translate": true,
-        "tags": "ياهو نيوز الإخباري"
-    },
-    {
-        "id": "dir_152",
-        "name": "موقع كووورة",
-        "description": "الموقع الرياضي العربي الأول",
-        "domain": "kooora.com",
-        "url": "https://www.kooora.com",
-        "category": "tech_sports",
-        "translate": false,
-        "tags": "موقع كووورة"
-    },
-    {
-        "id": "dir_153",
-        "name": "موقع هاي كورة",
-        "description": "أخبار وانتقالات الدوريات الأوروبية الكبرى",
-        "domain": "hihi2.com",
-        "url": "https://hihi2.com",
-        "category": "tech_sports",
-        "translate": false,
-        "tags": "موقع هاي كورة"
-    },
-    {
-        "id": "dir_154",
-        "name": "التقنية بلا حدود",
-        "description": "أخبار التكنولوجيا والهواتف الذكية",
-        "domain": "unlimit-tech.com",
-        "url": "https://www.unlimit-tech.com",
-        "category": "tech_sports",
-        "translate": false,
-        "tags": "التقنية بلا حدود"
-    },
-    {
-        "id": "dir_155",
-        "name": "البوابة العربية للأخبار التقنية",
-        "description": "آخر مستجدات الذكاء الاصطناعي والتكنولوجيا",
-        "domain": "aitnews.com",
-        "url": "https://aitnews.com",
-        "category": "tech_sports",
-        "translate": false,
-        "tags": "البوابة العربية للأخبار التقنية"
-    },
-    {
-        "id": "dir_156",
-        "name": "موقع عالم التقنية",
-        "description": "أخبار ريادة الأعمال والشركات الناشئة",
-        "domain": "tech-wd.com",
-        "url": "https://tech-wd.com",
-        "category": "tech_sports",
-        "translate": false,
-        "tags": "موقع عالم التقنية"
-    }
-];
+      { id: "site_aljazeera", name: "شبكة الجزيرة نت", description: "تغطية إخبارية مستمرة وتحليلات على مدار الساعة", domain: "aljazeera.net", url: "https://www.aljazeera.net", category: "arab", translate: false, tags: "الجزيرة قطر أخبار عاجل" },
+      { id: "site_motqdmoun", name: "موقع المتقدمون", description: "منصة إخبارية فلسطينية شاملة وتحديثات وفرص", domain: "motqdmoun.com", url: "https://www.motqdmoun.com", category: "palestine", translate: false, tags: "المتقدمون فلسطين غزة أخبار وظائف" },
+      { id: "site_maan", name: "وكالة معا الإخبارية", description: "وكالة أنباء فلسطينية مستقلة وشاملة", domain: "maannews.net", url: "https://www.maannews.net", category: "palestine", translate: false, tags: "معا فلسطين الضفة غزة القدس" },
+      { id: "site_wafa", name: "وكالة وفا الفلسطينية", description: "وكالة الأنباء والمعلومات الفلسطينية الرسمية", domain: "wafa.ps", url: "https://www.wafa.ps", category: "palestine", translate: false, tags: "وفا رفا فلسطين رام الله رسمية" },
+      { id: "dir_5", name: "جريدة القدس", description: "صحيفة يومية سياسية جامعة", domain: "alquds.com", url: "https://www.alquds.com", category: "palestine", translate: false, tags: "جريدة القدس" },
+      { id: "dir_6", name: "صحيفة الأيام الفلسطينية", description: "صحيفة فلسطينية يومية برام الله", domain: "al-ayyam.ps", url: "https://www.al-ayyam.ps", category: "palestine", translate: false, tags: "صحيفة الأيام الفلسطينية" },
+      { id: "dir_7", name: "المركز الفلسطيني للإعلام", description: "موقع وبوابة إخبارية", domain: "palinfo.com", url: "https://www.palinfo.com", category: "palestine", translate: false, tags: "المركز الفلسطيني للإعلام" },
+      { id: "dir_8", name: "موقع عرب 48", description: "أخبار الداخل الفلسطيني والمنطقة", domain: "arab48.com", url: "https://www.arab48.com", category: "palestine", translate: false, tags: "موقع عرب 48" },
+      { id: "dir_9", name: "وكالة الأنباء الأردنية (بترا)", description: "وكالة الأنباء الأردنية الرسمية", domain: "petra.gov.jo", url: "https://www.petra.gov.jo", category: "press", translate: false, tags: "وكالة الأنباء الأردنية (بترا)" },
+      { id: "dir_10", name: "وكالة عمون الإخبارية", description: "موقع وبوابة إخبارية", domain: "ammonnews.net", url: "https://www.ammonnews.net", category: "press", translate: false, tags: "وكالة عمون الإخبارية" },
+      { id: "dir_11", name: "جريدة الغد الأردنية", description: "يومية أردنية شاملة", domain: "alghad.com", url: "https://alghad.com", category: "press", translate: false, tags: "جريدة الغد الأردنية" },
+      { id: "dir_12", name: "جريدة الدستور الأردنية", description: "موقع وبوابة إخبارية", domain: "addustour.com", url: "https://www.addustour.com", category: "press", translate: false, tags: "جريدة الدستور الأردنية" },
+      { id: "dir_13", name: "صحيفة النهار اللبنانية", description: "صحيفة سياسية يومية من بيروت", domain: "annahar.com", url: "https://www.annahar.com", category: "press", translate: false, tags: "صحيفة النهار اللبنانية" },
+      { id: "dir_14", name: "جريدة الأخبار اللبنانية", description: "صحيفة سياسية يومية من بيروت", domain: "al-akhbar.com", url: "https://al-akhbar.com", category: "press", translate: false, tags: "جريدة الأخبار اللبنانية" },
+      { id: "dir_15", name: "لوريون لو جور (L'Orient-Le Jour)", description: "موقع وبوابة إخبارية", domain: "lorientlejour.com", url: "https://www.lorientlejour.com", category: "press", translate: false, tags: "لوريون لو جور (L'Orient-Le Jour)" },
+      { id: "dir_16", name: "الوكالة العربية السورية للأنباء (سانا)", description: "موقع وبوابة إخبارية", domain: "sana.sy", url: "https://sana.sy", category: "press", translate: false, tags: "الوكالة العربية السورية للأنباء (سانا)" },
+      { id: "dir_17", name: "عنب بلدي", description: "موقع وبوابة إخبارية", domain: "enabbaladi.net", url: "https://www.enabbaladi.net", category: "press", translate: false, tags: "عنب بلدي" },
+      { id: "dir_18", name: "بوابة الأهرام المصرية", description: "أعرق مؤسسة صحفية مصرية", domain: "ahram.org.eg", url: "https://gate.ahram.org.eg", category: "press", translate: false, tags: "بوابة الأهرام المصرية" },
+      { id: "dir_19", name: "المصري اليوم", description: "موقع وبوابة إخبارية", domain: "almasryalyoum.com", url: "https://www.almasryalyoum.com", category: "press", translate: false, tags: "المصري اليوم" },
+      { id: "dir_20", name: "اليوم السابع", description: "صحيفة وموقع إخباري مصري عاجل", domain: "youm7.com", url: "https://www.youm7.com", category: "press", translate: false, tags: "اليوم السابع" },
+      { id: "dir_21", name: "بوابة الشروق", description: "موقع وبوابة إخبارية", domain: "shorouknews.com", url: "https://www.shorouknews.com", category: "press", translate: false, tags: "بوابة الشروق" },
+      { id: "dir_22", name: "مصراوي", description: "موقع وبوابة إخبارية", domain: "masrawy.com", url: "https://www.masrawy.com", category: "press", translate: false, tags: "مصراوي" },
+      { id: "dir_23", name: "هسبريس المغربية", description: "جريدة إلكترونية مغربية رائدة", domain: "hespress.com", url: "https://www.hespress.com", category: "press", translate: false, tags: "هسبريس المغربية" },
+      { id: "dir_24", name: "لو 360 (Le360)", description: "موقع وبوابة إخبارية", domain: "le360.ma", url: "https://le360.ma", category: "press", translate: false, tags: "لو 360 (Le360)" },
+      { id: "dir_25", name: "وكالة الأنباء الجزائرية", description: "موقع وبوابة إخبارية", domain: "aps.dz", url: "https://www.aps.dz", category: "press", translate: false, tags: "وكالة الأنباء الجزائرية" },
+      { id: "dir_26", name: "النهار أونلاين الجزائرية", description: "موقع وبوابة إخبارية", domain: "ennaharonline.com", url: "https://www.ennaharonline.com", category: "press", translate: false, tags: "النهار أونلاين الجزائرية" },
+      { id: "dir_27", name: "وكالة تونس إفريقيا للأنباء", description: "موقع وبوابة إخبارية", domain: "tap.info.tn", url: "https://www.tap.info.tn", category: "press", translate: false, tags: "وكالة تونس إفريقيا للأنباء" },
+      { id: "dir_28", name: "موزاييك إف إم", description: "موقع وبوابة إخبارية", domain: "mosaiquefm.net", url: "https://www.mosaiquefm.net", category: "press", translate: false, tags: "موزاييك إف إم" },
+      { id: "dir_29", name: "وكالة الأنباء الليبية (وال)", description: "موقع وبوابة إخبارية", domain: "lana.gov.ly", url: "https://lana.gov.ly", category: "press", translate: false, tags: "وكالة الأنباء الليبية (وال)" },
+      { id: "dir_30", name: "بوابة الوسط الليبية", description: "موقع وبوابة إخبارية", domain: "alwasat.ly", url: "https://www.alwasat.ly", category: "press", translate: false, tags: "بوابة الوسط الليبية" },
+      { id: "dir_31", name: "الوكالة الموريتانية للأنباء", description: "موقع وبوابة إخبارية", domain: "ami.mr", url: "https://www.ami.mr", category: "press", translate: false, tags: "الوكالة الموريتانية للأنباء" },
+      { id: "dir_32", name: "وكالة السودان للأنباء (سونا)", description: "موقع وبوابة إخبارية", domain: "suna-sd.net", url: "https://suna-sd.net", category: "press", translate: false, tags: "وكالة السودان للأنباء (سونا)" },
+      { id: "dir_33", name: "وكالة الأنباء السعودية (واس)", description: "وكالة الأنباء الرسمية للمملكة", domain: "spa.gov.sa", url: "https://www.spa.gov.sa", category: "press", translate: false, tags: "وكالة الأنباء السعودية (واس)" },
+      { id: "dir_34", name: "جريدة الرياض", description: "صحيفة يومية سياسية تصدر بالرياض", domain: "alriyadh.com", url: "https://www.alriyadh.com", category: "press", translate: false, tags: "جريدة الرياض" },
+      { id: "dir_35", name: "صحيفة الشرق الأوسط", description: "جريدة العرب الدولية تصدر من لندن", domain: "aawsat.com", url: "https://aawsat.com", category: "press", translate: false, tags: "صحيفة الشرق الأوسط" },
+      { id: "dir_36", name: "صحيفة سبق الإلكترونية", description: "صحيفة إلكترونية سعودية شاملة", domain: "sabq.org", url: "https://sabq.org", category: "press", translate: false, tags: "صحيفة سبق الإلكترونية" },
+      { id: "dir_37", name: "وكالة أنباء الإمارات (وام)", description: "موقع وبوابة إخبارية", domain: "wam.ae", url: "https://www.wam.ae", category: "press", translate: false, tags: "وكالة أنباء الإمارات (وام)" },
+      { id: "dir_38", name: "صحيفة البيان الإماراتية", description: "موقع وبوابة إخبارية", domain: "albayan.ae", url: "https://www.albayan.ae", category: "press", translate: false, tags: "صحيفة البيان الإماراتية" },
+      { id: "dir_39", name: "الإمارات اليوم", description: "موقع وبوابة إخبارية", domain: "emaratalyoum.com", url: "https://www.emaratalyoum.com", category: "press", translate: false, tags: "الإمارات اليوم" },
+      { id: "dir_40", name: "صحيفة الاتحاد الإماراتية", description: "موقع وبوابة إخبارية", domain: "alittihad.ae", url: "https://www.alittihad.ae", category: "press", translate: false, tags: "صحيفة الاتحاد الإماراتية" },
+      { id: "dir_41", name: "وكالة الأنباء القطرية (قنا)", description: "موقع وبوابة إخبارية", domain: "qna.org.qa", url: "https://www.qna.org.qa", category: "press", translate: false, tags: "وكالة الأنباء القطرية (قنا)" },
+      { id: "dir_42", name: "جريدة الوطن القطرية", description: "موقع وبوابة إخبارية", domain: "al-watan.com", url: "https://www.al-watan.com", category: "press", translate: false, tags: "جريدة الوطن القطرية" },
+      { id: "dir_43", name: "وكالة الأنباء الكويتية (كونا)", description: "موقع وبوابة إخبارية", domain: "kuna.net.kw", url: "https://www.kuna.net.kw", category: "press", translate: false, tags: "وكالة الأنباء الكويتية (كونا)" },
+      { id: "dir_44", name: "جريدة الجريدة الكويتية", description: "موقع وبوابة إخبارية", domain: "aljarida.com", url: "https://www.aljarida.com", category: "press", translate: false, tags: "جريدة الجريدة الكويتية" },
+      { id: "dir_45", name: "وكالة الأنباء العمانية", description: "موقع وبوابة إخبارية", domain: "omannews.gov.om", url: "https://www.omannews.gov.om", category: "press", translate: false, tags: "وكالة الأنباء العمانية" },
+      { id: "dir_46", name: "جريدة عمان", description: "موقع وبوابة إخبارية", domain: "omandaily.om", url: "https://omandaily.om", category: "press", translate: false, tags: "جريدة عمان" },
+      { id: "dir_47", name: "وكالة أنباء البحرين (بنا)", description: "موقع وبوابة إخبارية", domain: "bna.bh", url: "https://www.bna.bh", category: "press", translate: false, tags: "وكالة أنباء البحرين (بنا)" },
+      { id: "dir_48", name: "وكالة الأنباء العراقية (واع)", description: "الوكالة الرسمية لجمهورية العراق", domain: "ina.iq", url: "https://www.ina.iq", category: "press", translate: false, tags: "وكالة الأنباء العراقية (واع)" },
+      { id: "dir_49", name: "جريدة الصباح العراقية", description: "موقع وبوابة إخبارية", domain: "alsabaah.iq", url: "https://alsabaah.iq", category: "press", translate: false, tags: "جريدة الصباح العراقية" },
+      { id: "dir_50", name: "قناة السومرية نيوز", description: "موقع وبوابة إخبارية", domain: "alsumaria.tv", url: "https://www.alsumaria.tv", category: "press", translate: false, tags: "قناة السومرية نيوز" },
+      { id: "dir_51", name: "وكالة الأنباء اليمنية (سبأ)", description: "موقع وبوابة إخبارية", domain: "saba.ye", url: "https://www.saba.ye", category: "press", translate: false, tags: "وكالة الأنباء اليمنية (سبأ)" },
+      { id: "dir_52", name: "قناة العربية", description: "الأخبار العاجلة والبرامج السياسية", domain: "alarabiya.net", url: "https://www.alarabiya.net", category: "arab", translate: false, tags: "قناة العربية" },
+      { id: "dir_53", name: "سكاي نيوز عربية", description: "أخبار العالم والشرق الأوسط", domain: "skynewsarabia.com", url: "https://www.skynewsarabia.com", category: "arab", translate: false, tags: "سكاي نيوز عربية" },
+      { id: "dir_54", name: "سي إن إن بالعربية", description: "شبكة سي إن إن الإخبارية بالعربية", domain: "arabic.cnn.com", url: "https://arabic.cnn.com", category: "arab", translate: false, tags: "سي إن إن بالعربية" },
+      { id: "dir_55", name: "بي بي سي عربي", description: "هيئة الإذاعة البريطانية بالعربية", domain: "bbc.com/arabic", url: "https://www.bbc.com/arabic", category: "arab", translate: false, tags: "بي بي سي عربي" },
+      { id: "dir_56", name: "فرانس 24 عربي", description: "الأخبار الدولية على مدار الساعة", domain: "france24.com/ar", url: "https://www.france24.com/ar", category: "arab", translate: false, tags: "فرانس 24 عربي" },
+      { id: "dir_57", name: "دويتشه فيله (DW عربية)", description: "صوت ألمانيا بالعربية", domain: "dw.com/ar", url: "https://www.dw.com/ar", category: "arab", translate: false, tags: "دويتشه فيله (DW عربية)" },
+      { id: "dir_58", name: "روسيا اليوم (RT Arabic)", description: "شبكة إخبارية روسية ناطقة بالعربية", domain: "arabic.rt.com", url: "https://arabic.rt.com", category: "arab", translate: false, tags: "روسيا اليوم (RT Arabic)" },
+      { id: "dir_59", name: "الشرق للأخبار", description: "منصة الأخبار الاقتصادية والمالية", domain: "asharq.com", url: "https://asharq.com", category: "arab", translate: false, tags: "الشرق للأخبار" },
+      { id: "dir_60", name: "شبكة الميادين الإعلامية", description: "موقع وبوابة إخبارية", domain: "almayadeen.net", url: "https://almayadeen.net", category: "press", translate: false, tags: "شبكة الميادين الإعلامية" },
+      { id: "dir_61", name: "قناة الحرة", description: "قناة فضائية أمريكية بالعربية", domain: "alhurra.com", url: "https://www.alhurra.com", category: "arab", translate: false, tags: "قناة الحرة" },
+      { id: "dir_62", name: "إندبندنت عربية", description: "صحيفة إندبندنت البريطانية بالعربية", domain: "independentarabia.com", url: "https://www.independentarabia.com", category: "arab", translate: false, tags: "إندبندنت عربية" },
+      { id: "dir_63", name: "العربي الجديد", description: "صحيفة يومية وموقع إخباري رصين", domain: "alaraby.co.uk", url: "https://www.alaraby.co.uk", category: "arab", translate: false, tags: "العربي الجديد" },
+      { id: "dir_64", name: "إيلاف", description: "موقع وبوابة إخبارية", domain: "elaph.com", url: "https://elaph.com", category: "press", translate: false, tags: "إيلاف" },
+      { id: "dir_65", name: "نون بوست", description: "موقع وبوابة إخبارية", domain: "noonpost.com", url: "https://www.noonpost.com", category: "press", translate: false, tags: "نون بوست" },
+      { id: "dir_66", name: "رويترز (Reuters)", description: "وكالة الأنباء العالمية رويترز", domain: "reuters.com", url: "https://www.reuters.com", category: "agencies", translate: true, tags: "رويترز (Reuters)" },
+      { id: "dir_67", name: "أسوشيتد برس (Associated Press)", description: "وكالة الأنباء الأمريكية الكبرى", domain: "apnews.com", url: "https://apnews.com", category: "agencies", translate: true, tags: "أسوشيتد برس (Associated Press)" },
+      { id: "dir_68", name: "وكالة فرانس برس (AFP)", description: "أقدم وكالة أنباء عالمية بالفرنسية والعربية", domain: "afp.com", url: "https://www.afp.com", category: "agencies", translate: false, tags: "وكالة فرانس برس (AFP)" },
+      { id: "dir_69", name: "بلومبرغ (Bloomberg)", description: "Bloomberg News الاقتصادية والمالية", domain: "bloomberg.com", url: "https://www.bloomberg.com", category: "world", translate: true, tags: "بلومبرغ (Bloomberg)" },
+      { id: "dir_70", name: "نيويورك تايمز (The New York Times)", description: "The New York Times (مترجم)", domain: "nytimes.com", url: "https://www.nytimes.com", category: "world", translate: true, tags: "نيويورك تايمز (The New York Times)" },
+      { id: "dir_71", name: "واشنطن بوست (The Washington Post)", description: "The Washington Post (مترجم)", domain: "washingtonpost.com", url: "https://www.washingtonpost.com", category: "world", translate: true, tags: "واشنطن بوست (The Washington Post)" },
+      { id: "dir_72", name: "وول ستريت جورنال (The Wall Street Journal)", description: "The Wall Street Journal المالية", domain: "wsj.com", url: "https://www.wsj.com", category: "world", translate: true, tags: "وول ستريت جورنال (The Wall Street Journal)" },
+      { id: "dir_73", name: "سي إن إن العالمية (CNN)", description: "موقع وبوابة إخبارية", domain: "edition.cnn.com", url: "https://edition.cnn.com", category: "press", translate: false, tags: "سي إن إن العالمية (CNN)" },
+      { id: "dir_74", name: "إيه بي سي نيوز (ABC News)", description: "أخبار وتقارير دولية", domain: "abcnews.go.com", url: "https://abcnews.go.com", category: "world", translate: true, tags: "إيه بي سي نيوز (ABC News)" },
+      { id: "dir_75", name: "سي بي إس نيوز (CBS News)", description: "أخبار وتقارير دولية", domain: "cbsnews.com", url: "https://www.cbsnews.com", category: "world", translate: true, tags: "سي بي إس نيوز (CBS News)" },
+      { id: "dir_76", name: "إن بي سي نيوز (NBC News)", description: "أخبار وتقارير دولية", domain: "nbcnews.com", url: "https://www.nbcnews.com", category: "world", translate: true, tags: "إن بي سي نيوز (NBC News)" },
+      { id: "dir_77", name: "فوكس نيوز (Fox News)", description: "أخبار وتقارير دولية", domain: "foxnews.com", url: "https://www.foxnews.com", category: "world", translate: true, tags: "فوكس نيوز (Fox News)" },
+      { id: "dir_78", name: "يو إس إيه توداي (USA Today)", description: "أخبار وتقارير دولية", domain: "usatoday.com", url: "https://www.usatoday.com", category: "world", translate: true, tags: "يو إس إيه توداي (USA Today)" },
+      { id: "dir_79", name: "بوليتيكو (Politico)", description: "أخبار وتقارير دولية", domain: "politico.com", url: "https://www.politico.com", category: "world", translate: true, tags: "بوليتيكو (Politico)" },
+      { id: "dir_80", name: "ذا هيل (The Hill)", description: "أخبار وتقارير دولية", domain: "thehill.com", url: "https://thehill.com", category: "world", translate: true, tags: "ذا هيل (The Hill)" },
+      { id: "dir_81", name: "الإذاعة الوطنية العامة الأمريكية (NPR)", description: "هيئة الإذاعة الوطنية العامة الأمريكية", domain: "npr.org", url: "https://www.npr.org", category: "agencies", translate: true, tags: "الإذاعة الوطنية العامة الأمريكية (NPR)" },
+      { id: "dir_82", name: "مجلة تايم (TIME)", description: "TIME Magazine العالمية", domain: "time.com", url: "https://time.com", category: "world", translate: true, tags: "مجلة تايم (TIME)" },
+      { id: "dir_83", name: "نيوزويك (Newsweek)", description: "أخبار وتقارير دولية", domain: "newsweek.com", url: "https://www.newsweek.com", category: "world", translate: true, tags: "نيوزويك (Newsweek)" },
+      { id: "dir_84", name: "سي إن بي سي (CNBC)", description: "أخبار وتقارير دولية", domain: "cnbc.com", url: "https://www.cnbc.com", category: "world", translate: true, tags: "سي إن بي سي (CNBC)" },
+      { id: "dir_85", name: "صحيفة الغارديان (The Guardian)", description: "The Guardian (مترجم)", domain: "theguardian.com", url: "https://www.theguardian.com", category: "world", translate: true, tags: "صحيفة الغارديان (The Guardian)" },
+      { id: "dir_86", name: "ديلي تلغراف (The Daily Telegraph)", description: "أخبار وتقارير دولية", domain: "telegraph.co.uk", url: "https://www.telegraph.co.uk", category: "world", translate: true, tags: "ديلي تلغراف (The Daily Telegraph)" },
+      { id: "dir_87", name: "ذا تايمز البريطانية (The Times)", description: "أخبار وتقارير دولية", domain: "thetimes.com", url: "https://www.thetimes.com", category: "world", translate: true, tags: "ذا تايمز البريطانية (The Times)" },
+      { id: "dir_88", name: "فايننشال تايمز (Financial Times)", description: "Financial Times المتخصصة في المال والأعمال", domain: "ft.com", url: "https://www.ft.com", category: "world", translate: true, tags: "فايننشال تايمز (Financial Times)" },
+      { id: "dir_89", name: "ذي إيكونوميست (The Economist)", description: "The Economist - شؤون الاقتصاد والسياسة", domain: "economist.com", url: "https://www.economist.com", category: "world", translate: true, tags: "ذي إيكونوميست (The Economist)" },
+      { id: "dir_90", name: "ذا إندبندنت (The Independent)", description: "أخبار وتقارير دولية", domain: "independent.co.uk", url: "https://www.independent.co.uk", category: "world", translate: true, tags: "ذا إندبندنت (The Independent)" },
+      { id: "dir_91", name: "سكاي نيوز البريطانية (Sky News UK)", description: "موقع وبوابة إخبارية", domain: "news.sky.com", url: "https://news.sky.com", category: "press", translate: false, tags: "سكاي نيوز البريطانية (Sky News UK)" },
+      { id: "dir_92", name: "صحيفة لوموند الفرنسية (Le Monde)", description: "Le Monde الفرنسية العريقة (مترجم)", domain: "lemonde.fr", url: "https://www.lemonde.fr", category: "world", translate: true, tags: "صحيفة لوموند الفرنسية (Le Monde)" },
+      { id: "dir_93", name: "صحيفة لوفيغارو (Le Figaro)", description: "أخبار وتقارير دولية", domain: "lefigaro.fr", url: "https://www.lefigaro.fr", category: "world", translate: true, tags: "صحيفة لوفيغارو (Le Figaro)" },
+      { id: "dir_94", name: "دير شبيغل الألمانية (Der Spiegel)", description: "Der Spiegel الألمانية (مترجم)", domain: "spiegel.de", url: "https://www.spiegel.de", category: "world", translate: true, tags: "دير شبيغل الألمانية (Der Spiegel)" },
+      { id: "dir_95", name: "فرانكفورتر ألغماينه تسايتونغ (FAZ)", description: "موقع وبوابة إخبارية", domain: "faz.net", url: "https://www.faz.net", category: "press", translate: false, tags: "فرانكفورتر ألغماينه تسايتونغ (FAZ)" },
+      { id: "dir_96", name: "إل باييس الإسبانية (El País)", description: "أخبار وتقارير دولية", domain: "elpais.com", url: "https://elpais.com", category: "world", translate: true, tags: "إل باييس الإسبانية (El País)" },
+      { id: "dir_97", name: "إل موندو الإسبانية (El Mundo)", description: "أخبار وتقارير دولية", domain: "elmundo.es", url: "https://www.elmundo.es", category: "world", translate: true, tags: "إل موندو الإسبانية (El Mundo)" },
+      { id: "dir_98", name: "كورييري ديلا سيرا الإيطالية (Corriere della Sera)", description: "أخبار وتقارير دولية", domain: "corriere.it", url: "https://www.corriere.it", category: "world", translate: true, tags: "كورييري ديلا سيرا الإيطالية (Corriere della Sera)" },
+      { id: "dir_99", name: "وكالة أنسا الإيطالية (ANSA)", description: "أخبار وتقارير دولية", domain: "ansa.it", url: "https://www.ansa.it", category: "world", translate: true, tags: "وكالة أنسا الإيطالية (ANSA)" },
+      { id: "dir_100", name: "وكالة تاس الروسية (TASS)", description: "أخبار وتقارير دولية", domain: "tass.com", url: "https://tass.com", category: "world", translate: true, tags: "وكالة تاس الروسية (TASS)" },
+      { id: "dir_101", name: "شبكة قدس الإخبارية", description: "نبض الشارع والشباب الفلسطيني", domain: "qudsn.co", url: "https://qudsn.co", category: "palestine", translate: false, tags: "شبكة قدس الإخبارية" },
+      { id: "dir_102", name: "وكالة صفا الفلسطينية", description: "وكالة الصحافة الفلسطينية المستقلة", domain: "safa.ps", url: "https://safa.ps", category: "palestine", translate: false, tags: "وكالة صفا الفلسطينية" },
+      { id: "dir_103", name: "وكالة شهاب للأنباء", description: "وكالة أنباء فلسطينية شاملة", domain: "shehabnews.com", url: "https://shehabnews.com", category: "palestine", translate: false, tags: "وكالة شهاب للأنباء" },
+      { id: "dir_104", name: "وكالة قدس نت للأنباء", description: "أخبار القدس والمحافظات الفلسطينية", domain: "qudsnet.com", url: "https://qudsnet.com", category: "palestine", translate: false, tags: "وكالة قدس نت للأنباء" },
+      { id: "dir_105", name: "صحيفة الحياة الجديدة", description: "صحيفة يومية رسمية فلسطينية", domain: "alhayat-j.com", url: "https://www.alhayat-j.com", category: "palestine", translate: false, tags: "صحيفة الحياة الجديدة" },
+      { id: "dir_106", name: "تلفزيون فلسطين الرسمي", description: "هيئة الإذاعة والتلفزيون الفلسطينية", domain: "pbc.ps", url: "https://www.pbc.ps", category: "palestine", translate: false, tags: "تلفزيون فلسطين الرسمي" },
+      { id: "dir_107", name: "فضائية الأقصى", description: "شبكة الأقصى الإعلامية", domain: "aqsatv.ps", url: "https://www.aqsatv.ps", category: "palestine", translate: false, tags: "فضائية الأقصى" },
+      { id: "dir_108", name: "إذاعة أجيال", description: "شبكة أجيال الإذاعية برام الله", domain: "ajyal.fm", url: "https://www.ajyal.fm", category: "palestine", translate: false, tags: "إذاعة أجيال" },
+      { id: "dir_109", name: "راديو بيت لحم 2000", description: "إذاعة فلسطينية مستقلة", domain: "rb2000.ps", url: "https://www.rb2000.ps", category: "palestine", translate: false, tags: "راديو بيت لحم 2000" },
+      { id: "dir_110", name: "موقع النجاح الإخباري", description: "مركز النجاح الإعلامي - نابلس", domain: "nn.ps", url: "https://www.nn.ps", category: "palestine", translate: false, tags: "موقع النجاح الإخباري" },
+      { id: "dir_111", name: "وكالة وطن للأنباء", description: "وكالة أنباء وتلفزيون وطن المستقل", domain: "wattan.net", url: "https://www.wattan.net", category: "palestine", translate: false, tags: "وكالة وطن للأنباء" },
+      { id: "dir_112", name: "شبكة راية الإعلامية", description: "شبكة إخبارية وإذاعية برام الله", domain: "raya.ps", url: "https://www.raya.ps", category: "palestine", translate: false, tags: "شبكة راية الإعلامية" },
+      { id: "dir_113", name: "راديو ناس", description: "أخبار وتقارير فلسطينية مجتمعية", domain: "nas.ps", url: "https://www.nas.ps", category: "palestine", translate: false, tags: "راديو ناس" },
+      { id: "dir_114", name: "موقع مدار نيوز", description: "تحليلات وترجمات للشأن الإسرائيلي", domain: "madar.news", url: "https://www.madar.news", category: "palestine", translate: false, tags: "موقع مدار نيوز" },
+      { id: "dir_115", name: "موقع بوست 24", description: "شبكة إخبارية فلسطينية منوعة", domain: "post24.ps", url: "https://www.post24.ps", category: "palestine", translate: false, tags: "موقع بوست 24" },
+      { id: "dir_116", name: "قناة الحدث", description: "تغطيات حية للأحداث الميدانية", domain: "alhadath.net", url: "https://www.alhadath.net", category: "arab", translate: false, tags: "قناة الحدث" },
+      { id: "dir_117", name: "التلفزيون العربي", description: "قناة إخبارية منوعة شاملة", domain: "alaraby.com", url: "https://www.alaraby.com", category: "arab", translate: false, tags: "التلفزيون العربي" },
+      { id: "dir_118", name: "قناة الغد الإخبارية", description: "أول قناة إخبارية عربية من القاهرة", domain: "alghad.tv", url: "https://www.alghad.tv", category: "arab", translate: false, tags: "قناة الغد الإخبارية" },
+      { id: "dir_119", name: "موقع إرم نيوز الإخباري", description: "تغطية سياسية واقتصادية خليجية وعربية", domain: "eremnews.com", url: "https://eremnews.com", category: "arab", translate: false, tags: "موقع إرم نيوز الإخباري" },
+      { id: "dir_120", name: "يورونيوز عربي", description: "الأخبار الأوروبية والعالمية", domain: "arabic.euronews.com", url: "https://arabic.euronews.com", category: "arab", translate: false, tags: "يورونيوز عربي" },
+      { id: "dir_121", name: "TRT عربي", description: "التلفزيون التركي باللغة العربية", domain: "trtarabi.com", url: "https://www.trtarabi.com", category: "arab", translate: false, tags: "TRT عربي" },
+      { id: "dir_122", name: "إذاعة مونت كارلو الدولية", description: "إذاعة فرنسية عربية دولية", domain: "mc-doualiya.com", url: "https://www.mc-doualiya.com", category: "arab", translate: false, tags: "إذاعة مونت كارلو الدولية" },
+      { id: "dir_123", name: "منصة رصيف 22", description: "منصة صحفية حرة ومستقلة", domain: "raseef22.net", url: "https://www.raseef22.net", category: "arab", translate: false, tags: "منصة رصيف 22" },
+      { id: "dir_124", name: "صحيفة القدس العربي", description: "صحيفة يومية سياسية تصدر بلندن", domain: "alquds.co.uk", url: "https://www.alquds.co.uk", category: "press", translate: false, tags: "صحيفة القدس العربي" },
+      { id: "dir_125", name: "صحيفة الرأي الأردنية", description: "المؤسسة الصحفية الأردنية", domain: "alrai.com", url: "https://alrai.com", category: "press", translate: false, tags: "صحيفة الرأي الأردنية" },
+      { id: "dir_126", name: "جريدة القبس الكويتية", description: "صحيفة كويتية يومية سياسية", domain: "alqabas.com", url: "https://www.alqabas.com", category: "press", translate: false, tags: "جريدة القبس الكويتية" },
+      { id: "dir_127", name: "صحيفة الراي الكويتية", description: "يومية سياسية شاملة من الكويت", domain: "alraimedia.com", url: "https://www.alraimedia.com", category: "press", translate: false, tags: "صحيفة الراي الكويتية" },
+      { id: "dir_128", name: "صحيفة عكاظ السعودية", description: "صحيفة يومية تصدر من جدة", domain: "okaz.com.sa", url: "https://www.okaz.com.sa", category: "press", translate: false, tags: "صحيفة عكاظ السعودية" },
+      { id: "dir_129", name: "صحيفة الاتحاد الإماراتية", description: "أول صحيفة يومية بأبوظبي", domain: "aletihad.ae", url: "https://www.aletihad.ae", category: "press", translate: false, tags: "صحيفة الاتحاد الإماراتية" },
+      { id: "dir_130", name: "جريدة الخليج الإماراتية", description: "دار الخليج للصحافة والطباعة", domain: "alkhaleej.ae", url: "https://www.alkhaleej.ae", category: "press", translate: false, tags: "جريدة الخليج الإماراتية" },
+      { id: "dir_131", name: "جريدة الوطن العمانية", description: "أول صحيفة يومية بسلطنة عمان", domain: "alwatan.com", url: "https://alwatan.com", category: "press", translate: false, tags: "جريدة الوطن العمانية" },
+      { id: "dir_132", name: "صحيفة الشروق الجزائرية", description: "يومية إخبارية جزائرية مستقلة", domain: "echoroukonline.com", url: "https://www.echoroukonline.com", category: "press", translate: false, tags: "صحيفة الشروق الجزائرية" },
+      { id: "dir_133", name: "صحيفة الصباح التونسية", description: "أقدم الصحف اليومية بتونس", domain: "assabah.com.tn", url: "https://www.assabah.com.tn", category: "press", translate: false, tags: "صحيفة الصباح التونسية" },
+      { id: "dir_134", name: "جريدة المدى العراقية", description: "صحيفة يومية عراقية مستقلة", domain: "almadapaper.net", url: "https://almadapaper.net", category: "press", translate: false, tags: "جريدة المدى العراقية" },
+      { id: "dir_135", name: "شبكة روداو الإعلامية", description: "شبكة إخبارية من كردستان العراق", domain: "rudaw.net/arabic", url: "https://www.rudaw.net/arabic", category: "press", translate: false, tags: "شبكة روداو الإعلامية" },
+      { id: "dir_136", name: "صحيفة الثورة السورية", description: "صحيفة سياسية يومية بدمشق", domain: "thawra.sy", url: "https://thawra.sy", category: "press", translate: false, tags: "صحيفة الثورة السورية" },
+      { id: "dir_137", name: "جريدة الوطن السورية", description: "صحيفة يومية سياسية سورية", domain: "alwatan.sy", url: "https://alwatan.sy", category: "press", translate: false, tags: "جريدة الوطن السورية" },
+      { id: "dir_138", name: "المشهد اليمني", description: "موقع إخباري يمني مستقل", domain: "almashhad-alyemeni.com", url: "https://almashhad-alyemeni.com", category: "press", translate: false, tags: "المشهد اليمني" },
+      { id: "dir_139", name: "صحيفة سودانايل الإخبارية", description: "منبر إخباري وثقافي سوداني شامل", domain: "sudanile.com", url: "https://sudanile.com", category: "press", translate: false, tags: "صحيفة سودانايل الإخبارية" },
+      { id: "dir_140", name: "صحيفة الأيام البحرينية", description: "صحيفة يومية سياسية بالمنامة", domain: "alayam.com", url: "https://www.alayam.com", category: "press", translate: false, tags: "صحيفة الأيام البحرينية" },
+      { id: "dir_141", name: "صحيفة رأي اليوم", description: "صحيفة إلكترونية مستقلة لعبد الباري عطوان", domain: "raialyoum.com", url: "https://www.raialyoum.com", category: "press", translate: false, tags: "صحيفة رأي اليوم" },
+      { id: "dir_142", name: "وكالة الأناضول التركية", description: "وكالة أنباء تركيا الرسمية بالعربية", domain: "aa.com.tr/ar", url: "https://www.aa.com.tr/ar", category: "agencies", translate: false, tags: "وكالة الأناضول التركية" },
+      { id: "dir_143", name: "وكالة شينخوا الصينية", description: "وكالة أنباء الصين الجديدة بالعربية", domain: "arabic.news.cn", url: "https://arabic.news.cn", category: "agencies", translate: false, tags: "وكالة شينخوا الصينية" },
+      { id: "dir_144", name: "وكالة يونهاب الكورية", description: "وكالة أنباء كوريا الجنوبية بالعربية", domain: "ynanews.com/ar", url: "https://en.yna.co.kr", category: "agencies", translate: true, tags: "وكالة يونهاب الكورية" },
+      { id: "dir_145", name: "صوت أمريكا (VOA)", description: "شبكة صوت أمريكا الإخبارية بالعربية", domain: "learningenglish.voanews.com", url: "https://www.voanews.com", category: "agencies", translate: true, tags: "صوت أمريكا (VOA)" },
+      { id: "dir_146", name: "وكالة كيودو اليابانية", description: "أكبر وكالة أنباء مستقلة باليابان", domain: "kyodonews.net", url: "https://english.kyodonews.net", category: "agencies", translate: true, tags: "وكالة كيودو اليابانية" },
+      { id: "dir_147", name: "التلفزيون السويسري (SWI)", description: "بوابة سويسرا الإخبارية بالعربية", domain: "swissinfo.ch/ara", url: "https://www.swissinfo.ch/ara", category: "agencies", translate: false, tags: "التلفزيون السويسري (SWI)" },
+      { id: "dir_148", name: "مجلة فورين بوليسي", description: "Foreign Policy للشؤون الدولية", domain: "foreignpolicy.com", url: "https://foreignpolicy.com", category: "world", translate: true, tags: "مجلة فورين بوليسي" },
+      { id: "dir_149", name: "مجلة فورين أفيرز", description: "Foreign Affairs للتحليلات الإستراتيجية", domain: "foreignaffairs.com", url: "https://www.foreignaffairs.com", category: "world", translate: true, tags: "مجلة فورين أفيرز" },
+      { id: "dir_150", name: "صحيفة إل باييس الإسبانية", description: "El País الإسبانية الكبرى (مترجم)", domain: "elpais.com", url: "https://english.elpais.com", category: "world", translate: true, tags: "صحيفة إل باييس الإسبانية" },
+      { id: "dir_151", name: "ياهو نيوز الإخباري", description: "Yahoo News تغطية الأخبار الشاملة", domain: "news.yahoo.com", url: "https://news.yahoo.com", category: "world", translate: true, tags: "ياهو نيوز الإخباري" },
+      { id: "dir_152", name: "موقع كووورة", description: "الموقع الرياضي العربي الأول", domain: "kooora.com", url: "https://www.kooora.com", category: "tech_sports", translate: false, tags: "موقع كووورة" },
+      { id: "dir_153", name: "موقع هاي كورة", description: "أخبار وانتقالات الدوريات الأوروبية الكبرى", domain: "hihi2.com", url: "https://hihi2.com", category: "tech_sports", translate: false, tags: "موقع هاي كورة" },
+      { id: "dir_154", name: "التقنية بلا حدود", description: "أخبار التكنولوجيا والهواتف الذكية", domain: "unlimit-tech.com", url: "https://www.unlimit-tech.com", category: "tech_sports", translate: false, tags: "التقنية بلا حدود" },
+      { id: "dir_155", name: "البوابة العربية للأخبار التقنية", description: "آخر مستجدات الذكاء الاصطناعي والتكنولوجيا", domain: "aitnews.com", url: "https://aitnews.com", category: "tech_sports", translate: false, tags: "البوابة العربية للأخبار التقنية" },
+      { id: "dir_156", name: "موقع عالم التقنية", description: "أخبار ريادة الأعمال والشركات الناشئة", domain: "tech-wd.com", url: "https://tech-wd.com", category: "tech_sports", translate: false, tags: "موقع عالم التقنية" }
+    ];
 
-    // The 4 initial sites designated for the main screen:
-    // 1. الجزيرة  2. المتقدمون  3. معا  4. وفا (رفا)
+    // The 4 initial sites designated for the main screen
     const DEFAULT_MAIN_SITE_IDS = ["site_aljazeera", "site_motqdmoun", "site_maan", "site_wafa"];
 
     // Built-in categories
@@ -3314,18 +1877,15 @@
     let directorySearchQuery = '';
     let isAppInitialized = false;
 
-    // High performance directory chunking
     let directoryPage = 1;
     const DIRECTORY_PAGE_SIZE = 25;
 
-    // Multi-Layer Storage Keys
+    // Storage Keys
     const STORAGE_KEY_V5 = 'news_app_active_sites_v5';
     const STORAGE_KEY_CATS = 'news_app_custom_cats_v5';
-    const COOKIE_KEY_V5 = 'news_app_active_sites_v5';
     const DB_NAME_V5 = 'NewsAppStorage_v5';
     const DB_STORE_V5 = 'active_sites_store';
 
-    // Helper: Debounce utility to prevent UI freezes on typing
     function debounce(fn, delay = 150) {
       let timer;
       return (...args) => {
@@ -3334,7 +1894,6 @@
       };
     }
 
-    // Helper: Normalize URL domain
     function cleanDomain(input) {
       if (!input) return '';
       let domain = input.trim().toLowerCase();
@@ -3363,77 +1922,14 @@
     }
 
     // ========================================================
-    // MULTI-LAYER UNBREAKABLE PERSISTENCE ENGINE (THROTTLED)
+    // UNBREAKABLE PERSISTENCE: CLEAN HASH & RELIABLE STORAGE
     // ========================================================
 
-    function readHashActiveSites() {
+    // 1. مسح الهاش الضار فوراً عند تشغيل التطبيق لمنع مسح القنوات
+    function sanitizeUrlHash() {
       try {
-        const hash = window.location.hash || '';
-        if (hash.startsWith('#sites=')) {
-          const raw = hash.substring(7);
-          const json = decodeURIComponent(raw);
-          const parsed = JSON.parse(json);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
-          }
-        }
-      } catch (e) {}
-      return null;
-    }
-
-    function syncHashActiveSites(sitesList) {
-      try {
-        if (!Array.isArray(sitesList) || sitesList.length === 0) return;
-        const compact = sitesList.map(s => ({
-          id: s.id,
-          name: s.name,
-          url: s.url,
-          desc: s.description,
-          cat: s.category,
-          tr: s.translate ? 1 : 0,
-          v: s.visits || 0,
-          fav: s.isFavorite ? 1 : 0
-        }));
-        const encoded = encodeURIComponent(JSON.stringify(compact));
-        const newHash = '#sites=' + encoded;
-        if (window.location.hash !== newHash) {
-          history.replaceState(null, '', newHash);
-        }
-      } catch (e) {}
-    }
-
-    function readCookieActiveSites() {
-      try {
-        const nameEQ = COOKIE_KEY_V5 + '=';
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i].trim();
-          if (c.indexOf(nameEQ) === 0) {
-            const raw = decodeURIComponent(c.substring(nameEQ.length));
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-          }
-        }
-      } catch (e) {}
-      return null;
-    }
-
-    function writeCookieActiveSites(sitesList) {
-      try {
-        if (!Array.isArray(sitesList) || sitesList.length === 0) return;
-        const compact = sitesList.map(s => ({
-          id: s.id,
-          name: s.name,
-          url: s.url,
-          desc: s.description,
-          cat: s.category,
-          tr: s.translate ? 1 : 0,
-          v: s.visits || 0,
-          fav: s.isFavorite ? 1 : 0
-        }));
-        const val = encodeURIComponent(JSON.stringify(compact));
-        if (val.length < 3800) {
-          document.cookie = `${COOKIE_KEY_V5}=${val}; max-age=31536000; path=/; SameSite=Lax`;
+        if (window.location.hash && window.location.hash.includes('sites=')) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       } catch (e) {}
     }
@@ -3525,71 +2021,28 @@
       } catch (e) {}
     }
 
-    // Debounced background storage to prevent freezing mobile UI thread
-    const debouncedBackgroundSave = debounce(() => {
-      syncHashActiveSites(activeSites);
-      writeCookieActiveSites(activeSites);
-      try {
-        sessionStorage.setItem(STORAGE_KEY_V5, JSON.stringify(activeSites));
-      } catch (e) {}
-      try {
-        window.name = JSON.stringify({ app: 'news_app', activeSites: activeSites, cats: customCategories });
-      } catch (e) {}
-      saveToIndexedDB(activeSites, customCategories);
-    }, 200);
-
-    // Fast synchronous primary persist
+    // الحفظ المتزامن والفوري مع الحفاظ الصارم على حالة المفضلة
     function persistActiveSites() {
       if (!isAppInitialized) return;
-      if (!Array.isArray(activeSites) || activeSites.length === 0) return;
+      if (!Array.isArray(activeSites)) return;
 
-      // 1. Instant local storage write
+      // 1. حفظ فوري في LocalStorage
       try {
         localStorage.setItem(STORAGE_KEY_V5, JSON.stringify(activeSites));
       } catch (e) {}
 
       saveCustomCategories();
 
-      // 2. Offload heavier storage (hash, cookie, idb) to debounced thread
-      debouncedBackgroundSave();
+      // 2. حفظ فوري في SessionStorage
+      try {
+        sessionStorage.setItem(STORAGE_KEY_V5, JSON.stringify(activeSites));
+      } catch (e) {}
+
+      // 3. حفظ دائم في IndexedDB
+      saveToIndexedDB(activeSites, customCategories);
 
       updateTriggerBar();
       updateCounters();
-    }
-
-    function getSynchronousActiveSites() {
-      const fromHash = readHashActiveSites();
-      if (fromHash && fromHash.length > 0) return fromHash;
-
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY_V5);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        }
-      } catch (e) {}
-
-      const fromCookie = readCookieActiveSites();
-      if (fromCookie && fromCookie.length > 0) return fromCookie;
-
-      try {
-        const rawS = sessionStorage.getItem(STORAGE_KEY_V5);
-        if (rawS) {
-          const parsed = JSON.parse(rawS);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        }
-      } catch (e) {}
-
-      try {
-        if (window.name && window.name.startsWith('{')) {
-          const parsed = JSON.parse(window.name);
-          if (parsed && Array.isArray(parsed.activeSites) && parsed.activeSites.length > 0) {
-            return parsed.activeSites;
-          }
-        }
-      } catch (e) {}
-
-      return null;
     }
 
     function getDefaultInitialSites() {
@@ -3610,13 +2063,24 @@
     }
 
     async function loadActiveSites() {
+      sanitizeUrlHash();
       customCategories = loadCustomCategories();
 
-      let loaded = getSynchronousActiveSites();
+      let loaded = null;
 
+      // 1. القراءة من LocalStorage
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_V5);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) loaded = parsed;
+        }
+      } catch (e) {}
+
+      // 2. القراءة من IndexedDB إذا لم يتوفر في LocalStorage
       if (!loaded) {
         const idbData = await loadFromIndexedDB();
-        if (idbData && idbData.sites) {
+        if (idbData && idbData.sites && idbData.sites.length > 0) {
           loaded = idbData.sites;
           if (idbData.cats && idbData.cats.length > 0 && customCategories.length === 0) {
             customCategories = idbData.cats;
@@ -3625,9 +2089,11 @@
         }
       }
 
+      // 3. البناء الدقيق وتأكيد بقاء المفضلة
       if (loaded && Array.isArray(loaded) && loaded.length > 0) {
         activeSites = loaded.map(item => {
           const matched = MASTER_DIRECTORY.find(d => d.id === item.id || cleanDomain(d.url) === cleanDomain(item.url));
+          const isFav = Boolean(item.isFavorite === true || item.fav === 1 || item.fav === true);
           return {
             id: item.id || (matched ? matched.id : 'site_' + Date.now()),
             name: item.name || (matched ? matched.name : extractNameFromDomain(item.domain || item.url)),
@@ -3635,11 +2101,11 @@
             url: formatUrl(item.url || (matched ? matched.url : '')),
             domain: item.domain || (matched ? matched.domain : cleanDomain(item.url)),
             category: item.category || (matched ? matched.category : 'palestine'),
-            translate: Boolean(item.translate),
-            visits: Number(item.visits) || 0,
+            translate: Boolean(item.translate || item.tr),
+            visits: Number(item.visits || item.v) || 0,
             lastVisited: Number(item.lastVisited) || Date.now(),
             isUserAdded: Boolean(item.isUserAdded),
-            isFavorite: Boolean(item.isFavorite || item.fav)
+            isFavorite: isFav
           };
         });
       } else {
@@ -3679,7 +2145,6 @@
       return counts;
     }
 
-    // Updates the Trigger Button in Header
     function updateTriggerBar() {
       const triggerIcon = document.getElementById('triggerCatIcon');
       const triggerName = document.getElementById('triggerCatName');
@@ -3712,7 +2177,6 @@
       }
     }
 
-    // Renders the categories list inside the drop-down Curtain
     function renderCurtainCategories() {
       const grid = document.getElementById('curtainCategoriesGrid');
       if (!grid) return;
@@ -3748,13 +2212,9 @@
         return card;
       }
 
-      // 1. "الكل" (All)
       fragment.appendChild(createCatCard('all', 'الكل (جميع المواقع)', '📰', counts.all));
-
-      // 2. "⭐ المفضلة" (Favorites)
       fragment.appendChild(createCatCard('favorites', 'المفضلة', '⭐', counts.favorites, true));
 
-      // 3. Built-in & Custom Categories
       getAllCategories().forEach(cat => {
         fragment.appendChild(createCatCard(cat.id, cat.name, cat.icon, counts[cat.id] || 0));
       });
@@ -3763,7 +2223,6 @@
     }
 
     function openCurtain() {
-      pushModalState('curtain');
       renderCurtainCategories();
       const overlay = document.getElementById('categoryCurtainOverlay');
       const trigger = document.getElementById('categoryCurtainTrigger');
@@ -3780,7 +2239,6 @@
       trigger.setAttribute('aria-expanded', 'false');
     }
 
-    // Populate category dropdowns in Add and Manage modals
     function populateCategoryDropdowns(selectedVal = '') {
       const selects = [
         document.getElementById('quickCategorySelect'),
@@ -3799,9 +2257,7 @@
           sel.appendChild(opt);
         });
 
-        if (currentVal) {
-          sel.value = currentVal;
-        }
+        if (currentVal) sel.value = currentVal;
       });
     }
 
@@ -3817,8 +2273,8 @@
       if (dirBadge) dirBadge.innerText = availableCount;
     }
 
-    // Fast Batch-Rendered Main Grid Sites using DocumentFragment
-    function renderSites(highlightId = null) {
+    // Render Saved Sites Grid
+    function renderSites() {
       const grid = document.getElementById('sitesGrid');
       if (!grid) return;
       grid.innerHTML = '';
@@ -3862,9 +2318,9 @@
           }
         } else if (currentCategory === 'favorites') {
           empty.innerHTML = `
-            <div style="font-size: 1.05rem; font-weight:700; color: #1e293b;">⭐ لا توجد مواقع في المفضلة حالياً</div>
+            <div style="font-size: 1.05rem; font-weight:800; color: #1e293b;">⭐ لا توجد مواقع في المفضلة حالياً</div>
             <div style="font-size: 0.84rem; color: #64748b; max-width: 320px; line-height: 1.5;">
-              انقر على زر الثلاث نقاط (⋮) بجانب أي موقع بالشاشة الرئيسية واختر <strong>"إضافة إلى المفضلة"</strong> لتظهر هنا فوراً.
+              انقر على النجمة في بطاقة الموقع أو من قائمة (⋮) لتمييزه فوراً كمفضل.
             </div>
           `;
           grid.appendChild(empty);
@@ -3899,7 +2355,6 @@
         const iconWrapper = document.createElement('div');
         iconWrapper.className = 'site-icon-wrapper';
 
-        // Lightweight Favicon with loading="lazy" and decoding="async"
         const img = document.createElement('img');
         img.className = 'site-icon-img';
         img.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
@@ -3930,14 +2385,14 @@
         if (site.isFavorite) {
           const favBadge = document.createElement('span');
           favBadge.className = 'site-fav-badge';
-          favBadge.textContent = '⭐ المفضلة';
+          favBadge.textContent = '⭐';
           subRow.appendChild(favBadge);
         }
 
         if (site.isUserAdded) {
           const userBadge = document.createElement('span');
           userBadge.className = 'user-added-badge';
-          userBadge.textContent = '⭐ خاص';
+          userBadge.textContent = 'خاص';
           subRow.appendChild(userBadge);
         }
 
@@ -3962,21 +2417,46 @@
         mainBtn.appendChild(info);
         card.appendChild(mainBtn);
 
+        // Actions: Quick star button & Three dots menu
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'card-actions';
+
+        const starBtn = document.createElement('button');
+        starBtn.type = 'button';
+        starBtn.className = `btn-quick-star ${site.isFavorite ? 'is-fav' : ''}`;
+        starBtn.title = site.isFavorite ? 'إزالة من المفضلة' : 'إضافة إلى المفضلة';
+        starBtn.innerHTML = site.isFavorite ? '⭐' : '☆';
+        starBtn.onclick = (e) => {
+          e.stopPropagation();
+          toggleFavoriteDirect(site.id);
+        };
+        actionsDiv.appendChild(starBtn);
+
         const dotsBtn = document.createElement('button');
         dotsBtn.type = 'button';
         dotsBtn.className = 'btn-dots';
-        dotsBtn.title = `إدارة وتعديل أو نقل أو تفضيل ${siteTitle}`;
+        dotsBtn.title = `إدارة وتعديل أو نقل ${siteTitle}`;
         dotsBtn.innerHTML = '&#8942;';
         dotsBtn.onclick = (e) => {
           e.stopPropagation();
           openManageModal(site);
         };
-        card.appendChild(dotsBtn);
+        actionsDiv.appendChild(dotsBtn);
 
+        card.appendChild(actionsDiv);
         fragment.appendChild(card);
       });
 
       grid.appendChild(fragment);
+    }
+
+    function toggleFavoriteDirect(siteId) {
+      const site = activeSites.find(s => s.id === siteId);
+      if (!site) return;
+      site.isFavorite = !site.isFavorite;
+      persistActiveSites();
+      renderSites();
+      showToast(site.isFavorite ? `تمت إضافة "${site.name}" للمفضلة ⭐` : `تمت إزالة "${site.name}" من المفضلة`, 'info');
     }
 
     function openSite(site) {
@@ -3984,23 +2464,17 @@
       site.lastVisited = Date.now();
       persistActiveSites();
 
-      setTimeout(() => {
-        renderSites();
-      }, 500);
+      setTimeout(() => renderSites(), 400);
 
       const targetUrl = formatUrl(site.url);
       let finalUrl = targetUrl;
-
       if (site.translate) {
         finalUrl = `https://translate.google.com/translate?sl=auto&tl=ar&u=${encodeURIComponent(targetUrl)}`;
       }
-
       window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
-    // ========================================================
-    // DIRECTORY: FAST CHUNKED RENDERING WITH ZERO NETWORK FREEZE
-    // ========================================================
+    // Render Directory
     function renderDirectory(appendNext = false) {
       const list = document.getElementById('directoryResultsList');
       if (!list) return;
@@ -4027,18 +2501,16 @@
 
       if (filtered.length === 0) {
         if (availableSites.length === 0) {
-          list.innerHTML = '<div style="text-align:center; padding:20px; color:#10b981; font-weight:700; font-size:0.9rem;">🎉 رائع! جميع مواقع الدليل مضافة حالياً إلى شاشتك الرئيسية.</div>';
+          list.innerHTML = '<div style="text-align:center; padding:20px; color:#10b981; font-weight:800; font-size:0.9rem;">🎉 رائع! جميع مواقع الدليل مضافة حالياً لشاشتك.</div>';
         } else {
-          list.innerHTML = '<div style="text-align:center; padding:16px; color:#94a3b8; font-size:0.85rem;">لم يتم العثور على موقع بهذا الاسم بين المواقع المتاحة. يمكنك إدخال الرابط يدوياً عبر تبويب "رابط يدوي مخصص".</div>';
+          list.innerHTML = '<div style="text-align:center; padding:16px; color:#94a3b8; font-size:0.85rem;">لم يتم العثور على موقع مطابق. يمكنك إدخال الرابط يدوياً عبر "رابط يدوي مخصص".</div>';
         }
         return;
       }
 
-      // Remove existing load more button if present
       const oldMoreBtn = document.getElementById('directoryLoadMoreBtn');
       if (oldMoreBtn) oldMoreBtn.remove();
 
-      // Chunk items to render instantly without saturating network/CPU
       const startIndex = (directoryPage - 1) * DIRECTORY_PAGE_SIZE;
       const endIndex = Math.min(filtered.length, directoryPage * DIRECTORY_PAGE_SIZE);
       const chunk = filtered.slice(startIndex, endIndex);
@@ -4054,9 +2526,9 @@
         info.className = 'directory-item-info';
 
         const img = document.createElement('img');
-        img.style.width = '22px';
-        img.style.height = '22px';
-        img.style.borderRadius = '5px';
+        img.style.width = '24px';
+        img.style.height = '24px';
+        img.style.borderRadius = '6px';
         img.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(item.domain)}&sz=64`;
         img.alt = item.name;
         img.loading = 'lazy';
@@ -4085,9 +2557,7 @@
         btn.type = 'button';
         btn.className = 'btn-quick-add';
         btn.textContent = '➕ إضافة';
-        btn.onclick = () => {
-          addSiteFromDirectory(item);
-        };
+        btn.onclick = () => addSiteFromDirectory(item);
         row.appendChild(btn);
 
         fragment.appendChild(row);
@@ -4095,7 +2565,6 @@
 
       list.appendChild(fragment);
 
-      // Add "Load More" button if there are remaining items
       if (endIndex < filtered.length) {
         const moreBtn = document.createElement('button');
         moreBtn.type = 'button';
@@ -4133,7 +2602,7 @@
       sortActiveSites();
       persistActiveSites();
 
-      renderSites(newSite.id);
+      renderSites();
       renderDirectory();
 
       showToast(`تمت إضافة "${item.name}" بنجاح`, 'success');
@@ -4161,14 +2630,10 @@
       }
 
       let nameVal = nameInput.value.trim();
-      if (!nameVal) {
-        nameVal = extractNameFromDomain(domain);
-      }
+      if (!nameVal) nameVal = extractNameFromDomain(domain);
 
       let descVal = descInput.value.trim();
-      if (!descVal) {
-        descVal = 'موقع إخباري خاص';
-      }
+      if (!descVal) descVal = 'موقع إخباري خاص';
 
       const catVal = catSelect ? catSelect.value : 'palestine';
       const fullUrl = formatUrl(urlVal);
@@ -4181,7 +2646,7 @@
         existing.translate = translateInput.checked;
         sortActiveSites();
         persistActiveSites();
-        renderSites(existing.id);
+        renderSites();
         showToast(`تم تحديث "${nameVal}" بنجاح`, 'success');
         closeAddModal();
         return;
@@ -4206,7 +2671,7 @@
       sortActiveSites();
       persistActiveSites();
 
-      renderSites(newId);
+      renderSites();
       renderDirectory();
 
       urlInput.value = '';
@@ -4233,14 +2698,7 @@
       showToast(`تمت إزالة "${siteName}" وأُعيد للدليل الداخلي`, 'info');
     }
 
-    function pushModalState(modalName) {
-      try {
-        history.pushState({ modal: modalName }, '');
-      } catch (e) {}
-    }
-
     function openAddModal() {
-      pushModalState('add');
       populateCategoryDropdowns();
       renderDirectory();
       document.getElementById('addModalOverlay').classList.add('active');
@@ -4252,7 +2710,6 @@
     }
 
     function openAddCategoryModal() {
-      pushModalState('addCategory');
       document.getElementById('newCategoryNameInput').value = '';
       document.getElementById('addCategoryModalOverlay').classList.add('active');
       document.getElementById('newCategoryNameInput').focus();
@@ -4282,11 +2739,7 @@
       }
 
       const newCatId = 'custom_cat_' + Date.now();
-      customCategories.push({
-        id: newCatId,
-        name: catName,
-        icon: catIcon
-      });
+      customCategories.push({ id: newCatId, name: catName, icon: catIcon });
 
       saveCustomCategories();
       populateCategoryDropdowns(newCatId);
@@ -4299,7 +2752,6 @@
     }
 
     function openManageModal(site) {
-      pushModalState('manage');
       document.getElementById('manageSiteId').value = site.id;
       document.getElementById('manageSiteName').value = site.name || '';
       document.getElementById('manageSiteDesc').value = site.description || '';
@@ -4387,32 +2839,21 @@
       const catSelect = document.getElementById('manageSiteCategory');
       const newCategory = catSelect ? catSelect.value : 'palestine';
 
-      if (!newName) {
-        showToast('يرجى تحديد اسم للموقع', 'error');
-        document.getElementById('manageSiteName').focus();
-        return;
-      }
-
-      if (!newUrl) {
-        showToast('يرجى كتابة رابط للموقع', 'error');
-        document.getElementById('manageSiteUrl').focus();
+      if (!newName || !newUrl) {
+        showToast('يرجى تحديد اسم ورابط صحيحين للموقع', 'error');
         return;
       }
 
       const siteIndex = activeSites.findIndex(s => s.id === id);
       if (siteIndex === -1) {
-        showToast('تعذر العثور على الموقع', 'error');
         closeManageModal();
         return;
       }
 
-      const fullUrl = formatUrl(newUrl);
-      const domain = cleanDomain(newUrl);
-
       activeSites[siteIndex].name = newName;
       activeSites[siteIndex].description = newDesc || 'موقع إخباري';
-      activeSites[siteIndex].url = fullUrl;
-      activeSites[siteIndex].domain = domain;
+      activeSites[siteIndex].url = formatUrl(newUrl);
+      activeSites[siteIndex].domain = cleanDomain(newUrl);
       activeSites[siteIndex].category = newCategory;
       activeSites[siteIndex].translate = newTranslate;
 
@@ -4430,11 +2871,8 @@
       if (!site) return;
 
       closeManageModal();
-      pushModalState('delete');
-
       document.getElementById('deleteSiteId').value = site.id;
-      const displayLabel = site.name || 'هذا الموقع';
-      document.getElementById('deletePromptText').innerHTML = `هل أنت متأكد من رغبتك في إزالة موقع <strong>"${displayLabel}"</strong> من الشاشة الرئيسية؟`;
+      document.getElementById('deletePromptText').innerHTML = `هل أنت متأكد من رغبتك في إزالة موقع <strong>"${site.name}"</strong> من الشاشة الرئيسية؟`;
       document.getElementById('deleteModalOverlay').classList.add('active');
     }
 
@@ -4442,55 +2880,63 @@
       document.getElementById('deleteModalOverlay').classList.remove('active');
     }
 
-    function openExitModal() {
-      pushModalState('exit');
-      document.getElementById('exitModalOverlay').classList.add('active');
+    // Backup & Restore
+    function openBackupModal() {
+      document.getElementById('backupModalOverlay').classList.add('active');
     }
 
-    function closeExitModal() {
-      document.getElementById('exitModalOverlay').classList.remove('active');
+    function closeBackupModal() {
+      document.getElementById('backupModalOverlay').classList.remove('active');
     }
 
-    function handleDeviceBack() {
-      const curtainOverlay = document.getElementById('categoryCurtainOverlay');
-      const addModal = document.getElementById('addModalOverlay');
-      const addCatModal = document.getElementById('addCategoryModalOverlay');
-      const manageModal = document.getElementById('manageModalOverlay');
-      const deleteModal = document.getElementById('deleteModalOverlay');
-      const pasteModal = document.getElementById('pasteModalOverlay');
-      const exitModal = document.getElementById('exitModalOverlay');
+    document.getElementById('exportBackupBtn').addEventListener('click', () => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(activeSites, null, 2));
+      const a = document.createElement('a');
+      const dateStr = new Date().toISOString().slice(0, 10);
+      a.href = dataStr;
+      a.download = `akhbar_alyoum_backup_${dateStr}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast('تم تنزيل ملف النسخة الاحتياطية بنجاح', 'success');
+    });
 
-      if (curtainOverlay && curtainOverlay.classList.contains('active')) {
-        closeCurtain();
-        return;
-      }
-      if (deleteModal && deleteModal.classList.contains('active')) {
-        closeDeleteModal();
-        return;
-      }
-      if (manageModal && manageModal.classList.contains('active')) {
-        closeManageModal();
-        return;
-      }
-      if (addCatModal && addCatModal.classList.contains('active')) {
-        closeAddCategoryModal();
-        return;
-      }
-      if (pasteModal && pasteModal.classList.contains('active')) {
-        closeManualPasteModal();
-        return;
-      }
-      if (addModal && addModal.classList.contains('active')) {
-        closeAddModal();
-        return;
-      }
-      if (exitModal && exitModal.classList.contains('active')) {
-        closeExitModal();
-        return;
-      }
+    document.getElementById('importBackupInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
 
-      openExitModal();
-    }
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const imported = JSON.parse(evt.target.result);
+          if (Array.isArray(imported)) {
+            activeSites = imported;
+            persistActiveSites();
+            renderSites();
+            renderDirectory();
+            closeBackupModal();
+            showToast('تمت استعادة قنواتك ومفضلاتك بنجاح!', 'success');
+          } else {
+            showToast('الملف المرفوع لا يحتوي على بنية صحيحة', 'error');
+          }
+        } catch (err) {
+          showToast('حدث خطأ أثناء قراءة ملف النسخة', 'error');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    document.getElementById('resetDefaultsBtn').addEventListener('click', () => {
+      if (window.confirm('هل تريد استعادة القنوات الافتراضية الأربع الأساسية؟')) {
+        activeSites = getDefaultInitialSites();
+        persistActiveSites();
+        renderSites();
+        renderDirectory();
+        closeBackupModal();
+        showToast('تمت استعادة القنوات الافتراضية بنجاح', 'info');
+      }
+    });
 
     async function handlePaste() {
       try {
@@ -4509,7 +2955,6 @@
     }
 
     function openManualPasteModal() {
-      pushModalState('paste');
       const modal = document.getElementById('pasteModalOverlay');
       const input = document.getElementById('manualPasteInput');
       input.value = '';
@@ -4549,26 +2994,31 @@
     }
 
     // ========================================================
-    // INITIALIZATION & EVENT LISTENERS
+    // INITIALIZATION & LISTENERS
     // ========================================================
     document.addEventListener('DOMContentLoaded', () => {
-      try {
-        history.replaceState({ page: 'home' }, '');
-      } catch (e) {}
-
       loadActiveSites();
 
-      // Top circular add button
       document.getElementById('openAddModalBtn').addEventListener('click', openAddModal);
-
-      // Close Add Modal
       document.getElementById('closeAddModalBtn').addEventListener('click', closeAddModal);
       document.getElementById('cancelAddModalBtn').addEventListener('click', closeAddModal);
       document.getElementById('addModalOverlay').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closeAddModal();
       });
 
-      // Category Curtain Trigger Button (Opens the curtain dropdown)
+      const backupBtn = document.getElementById('openBackupModalBtn');
+      if (backupBtn) {
+        backupBtn.addEventListener('click', () => {
+          closeAddModal();
+          openBackupModal();
+        });
+      }
+      document.getElementById('closeBackupModalBtn').addEventListener('click', closeBackupModal);
+      document.getElementById('cancelBackupBtn').addEventListener('click', closeBackupModal);
+      document.getElementById('backupModalOverlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeBackupModal();
+      });
+
       const curtainTrigger = document.getElementById('categoryCurtainTrigger');
       if (curtainTrigger) {
         curtainTrigger.addEventListener('click', () => {
@@ -4581,51 +3031,35 @@
         });
       }
 
-      // Close Curtain button
       document.getElementById('closeCurtainBtn').addEventListener('click', closeCurtain);
-
-      // TOUCH ANYWHERE OUTSIDE TO DISMISS CURTAIN (بمجرد لمس أي مكان في الشاشة تختفي الستارة)
       const curtainOverlay = document.getElementById('categoryCurtainOverlay');
       if (curtainOverlay) {
         curtainOverlay.addEventListener('click', (e) => {
-          if (e.target === curtainOverlay) {
-            closeCurtain();
-          }
+          if (e.target === curtainOverlay) closeCurtain();
         });
       }
 
-      // Quick Favorites Filter Button in header
       const quickFavBtn = document.getElementById('quickFavFilterBtn');
       if (quickFavBtn) {
         quickFavBtn.addEventListener('click', () => {
-          if (currentCategory === 'favorites') {
-            currentCategory = 'all';
-          } else {
-            currentCategory = 'favorites';
-          }
+          currentCategory = (currentCategory === 'favorites') ? 'all' : 'favorites';
           updateTriggerBar();
           renderSites();
         });
       }
 
-      // Category management remains available from the curtain.
       document.getElementById('curtainAddCategoryBtn').addEventListener('click', () => {
         closeCurtain();
         openAddCategoryModal();
       });
 
-      // Add Category Modal Events
       document.getElementById('closeAddCategoryModalBtn').addEventListener('click', closeAddCategoryModal);
       document.getElementById('cancelAddCategoryBtn').addEventListener('click', closeAddCategoryModal);
       document.getElementById('saveNewCategoryBtn').addEventListener('click', saveNewCategory);
       document.getElementById('addCategoryModalOverlay').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closeAddCategoryModal();
       });
-      document.getElementById('newCategoryNameInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') saveNewCategory();
-      });
 
-      // Tabs in Add Modal (Only 2 tabs: Directory and Custom)
       const tabSearchBtn = document.getElementById('tabSearchBtn');
       const tabCustomBtn = document.getElementById('tabCustomBtn');
       const tabSearchPane = document.getElementById('tabSearchPane');
@@ -4648,7 +3082,6 @@
         document.getElementById('quickUrlInput').focus();
       });
 
-      // Debounced Directory Search Input (Eliminates typing lag!)
       const debouncedDirSearch = debounce((query) => {
         directorySearchQuery = query;
         renderDirectory();
@@ -4658,22 +3091,9 @@
         debouncedDirSearch(e.target.value);
       });
 
-      // Custom link submit
       document.getElementById('addCustomSiteBtn').addEventListener('click', addCustomSite);
-      document.getElementById('quickUrlInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') addCustomSite();
-      });
-      document.getElementById('quickNameInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') addCustomSite();
-      });
-      document.getElementById('quickDescInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') addCustomSite();
-      });
-
-      // Paste button
       document.getElementById('pasteBtn').addEventListener('click', handlePaste);
 
-      // Debounced Main Screen Saved Sites Search
       const debouncedMainSearch = debounce((query) => {
         savedSearchQuery = query.trim();
         renderSites();
@@ -4683,7 +3103,6 @@
         debouncedMainSearch(e.target.value);
       });
 
-      // Manage Modal (3-dots) Event Listeners
       document.getElementById('manageFavToggleBtn').addEventListener('click', toggleFavoriteFromManage);
       document.getElementById('manageMoveApplyBtn').addEventListener('click', applyMoveCategoryFromManage);
       document.getElementById('closeManageModalBtn').addEventListener('click', closeManageModal);
@@ -4693,17 +3112,7 @@
       document.getElementById('manageModalOverlay').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closeManageModal();
       });
-      document.getElementById('manageSiteName').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') saveManageEdits();
-      });
-      document.getElementById('manageSiteDesc').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') saveManageEdits();
-      });
-      document.getElementById('manageSiteUrl').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') saveManageEdits();
-      });
 
-      // Delete Modal Event Listeners
       document.getElementById('closeDeleteModalBtn').addEventListener('click', closeDeleteModal);
       document.getElementById('cancelDeleteBtn').addEventListener('click', closeDeleteModal);
       document.getElementById('confirmDeleteBtn').addEventListener('click', confirmDelete);
@@ -4711,52 +3120,14 @@
         if (e.target === e.currentTarget) closeDeleteModal();
       });
 
-      // Exit Modal Event Listeners
-      document.getElementById('closeExitModalBtn').addEventListener('click', closeExitModal);
-      document.getElementById('cancelExitBtn').addEventListener('click', closeExitModal);
-      document.getElementById('confirmExitBtn').addEventListener('click', () => {
-        persistActiveSites();
-        closeExitModal();
-        showToast('تم حفظ كافة البيانات وتأكيد الخروج.', 'info');
-        try {
-          window.close();
-        } catch (e) {}
-      });
-      document.getElementById('exitModalOverlay').addEventListener('click', (e) => {
-        if (e.target === e.currentTarget) closeExitModal();
-      });
-
-      // Manual Paste Modal Event Listeners
       document.getElementById('closePasteModalBtn').addEventListener('click', closeManualPasteModal);
       document.getElementById('cancelPasteBtn').addEventListener('click', closeManualPasteModal);
       document.getElementById('confirmPasteBtn').addEventListener('click', applyManualPaste);
       document.getElementById('pasteModalOverlay').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) closeManualPasteModal();
       });
-      document.getElementById('manualPasteInput').addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') applyManualPaste();
-      });
 
-      // Global Device Back Button Listener (popstate)
-      window.addEventListener('popstate', (e) => {
-        handleDeviceBack();
-        try {
-          history.pushState({ page: 'home' }, '');
-        } catch (err) {}
-      });
-
-      // Global Escape Key Listener
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          handleDeviceBack();
-        }
-      });
-
-      // Unload & Visibility State Handlers to Guarantee Saving
       window.addEventListener('beforeunload', () => {
-        if (isAppInitialized && activeSites.length > 0) persistActiveSites();
-      });
-      window.addEventListener('pagehide', () => {
         if (isAppInitialized && activeSites.length > 0) persistActiveSites();
       });
       document.addEventListener('visibilitychange', () => {
