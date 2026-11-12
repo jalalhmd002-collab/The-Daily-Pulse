@@ -9,21 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-hover: #0369a1;
-      --primary-light: #e0f2fe;
-      --cyan-neon: #38bdf8;
-      --cyan-glow: rgba(56, 189, 248, 0.45);
-      --danger: #ef4444;
-      --danger-hover: #dc2626;
-      --danger-light: #fee2e2;
-      --bg-body: #f1f5f9;
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-glass: rgba(255, 255, 255, 0.85);
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --border-glass: rgba(226, 232, 240, 0.9);
+      --primary: #fa9000;
+      --primary-hover: #d97700;
+      --primary-light: #fff4e5;
+      --cyan-neon: #fa9000;
+      --cyan-glow: rgba(250, 144, 0, 0.38);
+      --danger: #c31833;
+      --danger-hover: #9f1229;
+      --danger-light: #fde8eb;
+      --bg-body: #f5f5f5;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-glass: rgba(255, 255, 255, 0.92);
+      --text-main: #1a1a1a;
+      --text-muted: #595959;
+      --border-color: #e2e2e2;
+      --border-glass: rgba(216, 216, 216, 0.9);
       --radius: 16px;
       --radius-sm: 10px;
       --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.05);
@@ -40,7 +40,7 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #f8fafc 40%, #f1f5f9 100%);
+      background: radial-gradient(circle at 50% 0%, #fff4e5 0%, #fafafa 38%, #f2f2f2 100%);
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
@@ -77,6 +77,7 @@
       gap: 10px;
       box-shadow: var(--shadow-sm);
       border: 1px solid var(--border-glass);
+      border-top: 3px solid var(--primary);
       position: sticky;
       top: 6px;
       z-index: 100;
@@ -92,13 +93,13 @@
     .brand-icon {
       font-size: 1.55rem;
       line-height: 1;
-      filter: drop-shadow(0 2px 4px rgba(2, 132, 199, 0.25));
+      filter: drop-shadow(0 2px 4px rgba(250, 144, 0, 0.3));
     }
 
     .brand-title {
       font-size: 1.25rem;
       font-weight: 900;
-      color: #0f172a;
+      color: #1a1a1a;
       line-height: 1.2;
       letter-spacing: -0.3px;
     }
@@ -121,20 +122,21 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
+      gap: 4px;
+      margin-left: 8px;
     }
 
     .btn-neon-circle {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: #0f172a;
+      background: #1a1a1a;
       border: 1.5px solid var(--cyan-neon);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 0 14px var(--cyan-glow), 0 2px 6px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 0 14px var(--cyan-glow), 0 2px 6px rgba(26, 26, 26, 0.28);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       outline: none;
       padding: 0;
@@ -166,6 +168,8 @@
       font-weight: 800;
       color: var(--text-muted);
       line-height: 1;
+      text-align: center;
+      white-space: nowrap;
     }
 
     /* Main Section: Saved Sites */
@@ -188,7 +192,7 @@
     .section-title {
       font-size: 1.05rem;
       font-weight: 900;
-      color: #1e293b;
+      color: #222222;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -197,9 +201,9 @@
     .sort-indicator-pill {
       font-size: 0.73rem;
       font-weight: 800;
-      color: var(--primary);
-      background: #e0f2fe;
-      border: 1px solid #bae6fd;
+      color: #b45309;
+      background: #fff4e5;
+      border: 1px solid #ffd8a8;
       padding: 3px 10px;
       border-radius: 20px;
       display: inline-flex;
@@ -209,8 +213,8 @@
 
     .count-badge {
       font-size: 0.75rem;
-      background: #e2e8f0;
-      color: #1e293b;
+      background: #e2e2e2;
+      color: #222222;
       padding: 2px 9px;
       border-radius: 12px;
       font-weight: 800;
@@ -235,7 +239,7 @@
 
     .search-input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+      box-shadow: 0 0 0 3px rgba(250, 144, 0, 0.16);
     }
 
     .search-icon {
@@ -275,13 +279,13 @@
     @media (hover: hover) {
       .btn-category-curtain-trigger:hover {
         border-color: var(--primary);
-        background: #f8fafc;
+        background: #fafafa;
       }
     }
 
     .btn-category-curtain-trigger.open {
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+      box-shadow: 0 0 0 3px rgba(250, 144, 0, 0.16);
     }
 
     .trigger-label-group {
@@ -290,7 +294,7 @@
       gap: 8px;
       font-size: 0.92rem;
       font-weight: 800;
-      color: #0f172a;
+      color: #1a1a1a;
     }
 
     .trigger-icon {
@@ -299,7 +303,7 @@
     }
 
     .trigger-badge {
-      background: #e2e8f0;
+      background: #e2e2e2;
       color: #334155;
       font-size: 0.75rem;
       font-weight: 800;
@@ -399,7 +403,7 @@
 
     @media (hover: hover) {
       .site-card:hover {
-        border-color: #93c5fd;
+        border-color: #fa9000;
         transform: translateY(-2px);
         box-shadow: var(--shadow-sm);
       }
@@ -428,7 +432,7 @@
       min-height: 40px;
       max-height: 40px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -437,7 +441,7 @@
       font-weight: 800;
       font-size: 0.95rem;
       color: var(--primary);
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e2e2e2;
       box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
@@ -463,7 +467,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: #0f172a;
+      color: #1a1a1a;
       line-height: 1.3;
       display: block;
       width: 100%;
@@ -589,7 +593,7 @@
 
     @media (hover: hover) {
       .btn-dots:hover {
-        background: #f1f5f9;
+        background: #f2f2f2;
         color: var(--primary);
       }
     }
@@ -618,7 +622,7 @@
       font-size: 0.86rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 2px 6px rgba(250, 144, 0, 0.28);
     }
 
     /* Storage Indicator */
@@ -701,7 +705,7 @@
     .curtain-title-text {
       font-size: 1.05rem;
       font-weight: 900;
-      color: #1e293b;
+      color: #222222;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -714,7 +718,7 @@
     }
 
     .curtain-close-btn {
-      background: #f1f5f9;
+      background: #f2f2f2;
       border: none;
       font-size: 1.35rem;
       color: var(--text-muted);
@@ -745,8 +749,8 @@
     }
 
     .curtain-cat-card {
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
+      background: #fafafa;
+      border: 1.5px solid #e2e2e2;
       border-radius: 12px;
       padding: 10px 12px;
       display: flex;
@@ -768,7 +772,7 @@
     .curtain-cat-card.active {
       background: var(--primary-light);
       border-color: var(--primary);
-      color: var(--primary-hover);
+      color: #1a1a1a;
     }
 
     .curtain-cat-card.is-fav-cat {
@@ -814,7 +818,7 @@
     .curtain-cat-count {
       font-size: 0.72rem;
       font-weight: 800;
-      background: #e2e8f0;
+      background: #e2e2e2;
       color: #334155;
       padding: 1px 7px;
       border-radius: 10px;
@@ -822,7 +826,7 @@
 
     .curtain-cat-card.active .curtain-cat-count {
       background: var(--primary);
-      color: #ffffff;
+      color: #1a1a1a;
     }
 
     .curtain-cat-card.is-fav-cat.active .curtain-cat-count {
@@ -844,7 +848,7 @@
     .btn-curtain-add-cat {
       background: var(--primary-light);
       border: 1px dashed var(--primary);
-      color: var(--primary);
+      color: #b45309;
       width: 100%;
       padding: 10px;
       border-radius: 12px;
@@ -914,7 +918,7 @@
     .modal-title {
       font-size: 1.05rem;
       font-weight: 900;
-      color: #1e293b;
+      color: #222222;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -970,15 +974,15 @@
       padding: 9px 12px;
       font-size: 0.88rem;
       outline: none;
-      background: #f8fafc;
-      color: #0f172a;
+      background: #fafafa;
+      color: #1a1a1a;
       transition: border-color 0.15s;
     }
 
     .text-input:focus {
       border-color: var(--primary);
       background: #ffffff;
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 0 0 2px rgba(250, 144, 0, 0.18);
     }
 
     .field-hint {
@@ -987,7 +991,7 @@
     }
 
     .btn-paste {
-      background: #e2e8f0;
+      background: #e2e2e2;
       border: none;
       color: #334155;
       padding: 0 12px;
@@ -1031,7 +1035,7 @@
       padding: 11px 14px;
       border-radius: 12px;
       border: 1.5px solid #cbd5e1;
-      background: #f8fafc;
+      background: #fafafa;
       color: #334155;
       font-size: 0.92rem;
       font-weight: 800;
@@ -1050,8 +1054,8 @@
     }
 
     .move-category-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      background: #fafafa;
+      border: 1px solid #e2e2e2;
       border-radius: 12px;
       padding: 10px 12px;
       display: flex;
@@ -1060,7 +1064,7 @@
     }
 
     .btn-secondary {
-      background: #e2e8f0;
+      background: #e2e2e2;
       border: none;
       color: #334155;
       padding: 9px 15px;
@@ -1073,13 +1077,13 @@
     .btn-primary {
       background: var(--primary);
       border: none;
-      color: #ffffff;
+      color: #1a1a1a;
       padding: 9px 18px;
       border-radius: 10px;
       font-size: 0.88rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 2px 6px rgba(250, 144, 0, 0.28);
     }
 
     .btn-danger {
@@ -1098,7 +1102,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid #e2e8f0;
+      border-bottom: 2px solid #e2e2e2;
       margin-bottom: 6px;
       gap: 6px;
     }
@@ -1128,7 +1132,7 @@
     }
 
     .btn-tab-settings {
-      background: #f1f5f9;
+      background: #f2f2f2;
       border: 1px solid #cbd5e1;
       color: #334155;
       width: 34px;
@@ -1140,12 +1144,13 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 2px;
+      margin-left: 10px;
       transition: all 0.15s ease;
       flex-shrink: 0;
     }
 
     .btn-tab-settings:hover {
-      background: #e2e8f0;
+      background: #e2e2e2;
       color: var(--primary);
       border-color: var(--primary);
     }
@@ -1170,13 +1175,13 @@
       padding: 6px;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      background: #f8fafc;
+      background: #fafafa;
       contain: content;
     }
 
     .directory-item {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #e2e2e2;
       border-radius: 10px;
       padding: 8px 10px;
       display: flex;
@@ -1204,7 +1209,7 @@
     .directory-item-name {
       font-size: 0.88rem;
       font-weight: 800;
-      color: #0f172a;
+      color: #1a1a1a;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1232,7 +1237,7 @@
     }
 
     .btn-load-more {
-      background: #f1f5f9;
+      background: #f2f2f2;
       border: 1px dashed #cbd5e1;
       color: #475569;
       padding: 8px;
@@ -1258,7 +1263,7 @@
     }
 
     .toast {
-      background: #0f172a;
+      background: #1a1a1a;
       color: #ffffff;
       padding: 10px 18px;
       border-radius: 12px;
@@ -1289,7 +1294,7 @@
     }
 
     .toast.info {
-      background: #0f172a;
+      background: #1a1a1a;
       border-right: 4px solid var(--cyan-neon);
     }
 
@@ -1351,7 +1356,7 @@
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </button>
-          <span class="add-btn-caption">إضافة</span>
+          <span class="add-btn-caption">إضافة موقع</span>
         </div>
       </div>
     </header>
@@ -1361,7 +1366,7 @@
       <div class="section-header-row">
         <h2 class="section-title">
           <span>المواقع المحفوظة</span>
-          <span class="count-badge" id="siteCount">4</span>
+          <span class="count-badge" id="siteCount">156</span>
         </h2>
         <span class="sort-indicator-pill" title="يتم ترتيب المواقع تلقائياً حسب الأكثر زيارة واستخداماً">
           🔥 الأكثر استخداماً
@@ -1380,7 +1385,7 @@
           <span class="trigger-label-group">
             <span class="trigger-icon" id="triggerCatIcon">📰</span>
             <span class="trigger-title" id="triggerCatName">الكل</span>
-            <span class="trigger-badge" id="triggerCatCount">4</span>
+            <span class="trigger-badge" id="triggerCatCount">156</span>
           </span>
           <span class="trigger-arrow" id="triggerArrowIcon">▼</span>
         </button>
@@ -1440,8 +1445,7 @@
       <div class="modal-body">
         <div class="tabs-bar">
           <div style="display:flex; gap:6px;">
-            <button type="button" class="tab-btn active" id="tabSearchBtn">📚 دليل المواقع (<span id="dirCountBadge"></span> متاح)</button>
-            <button type="button" class="tab-btn" id="tabCustomBtn">🔗 رابط يدوي مخصص</button>
+            <span class="tab-btn active" style="cursor:default;">🔗 إضافة رابط يدوي مخصص</span>
           </div>
           <div class="tabs-group-left">
             <button type="button" class="btn-tab-settings" id="openBackupModalBtn" title="النسخ الاحتياطي وإدارة البيانات">
@@ -1450,22 +1454,8 @@
           </div>
         </div>
 
-        <!-- Tab 1: Directory Search -->
-        <div class="tab-pane active" id="tabSearchPane">
-          <div class="form-group">
-            <label class="form-label" for="directorySearchInput">ابحث في دليل المواقع المدمج لإضافتها لشاشتك:</label>
-            <div class="search-input-wrapper">
-              <input type="text" id="directorySearchInput" class="search-input" placeholder="ابحث بالاسم أو الدولة: شهاب، الأيام، RT، BBC، الأهرام...">
-              <span class="search-icon">🔍</span>
-            </div>
-            <span class="field-hint">كل موقع تقوم بإضافته يختفي من هذه القائمة، وعند حذفه من شاشتك يعود هنا فوراً.</span>
-          </div>
-
-          <div class="directory-results-list" id="directoryResultsList"></div>
-        </div>
-
-        <!-- Tab 2: Custom URL Form -->
-        <div class="tab-pane" id="tabCustomPane">
+        <!-- Custom URL Form -->
+        <div class="tab-pane active" id="tabCustomPane">
           <div class="form-group">
             <label class="form-label" for="quickUrlInput">رابط الموقع أو النطاق:</label>
             <div class="input-row">
@@ -1556,7 +1546,7 @@
           </label>
         </div>
 
-        <div class="form-group" style="background: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+        <div class="form-group" style="background: #fafafa; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color);">
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #475569;">
             <span>إحصائية الاستخدام الحالية:</span>
             <span id="manageVisitsText" style="font-weight: 800; color: #ea580c;">0 زيارة</span>
@@ -1566,7 +1556,7 @@
 
       <div class="modal-footer" style="justify-content: space-between;">
         <button type="button" class="btn-danger" id="manageDeleteBtn">
-          🗑️ إزالة من الشاشة (إرجاع للدليل)
+          🗑️ حذف الموقع
         </button>
         <div style="display: flex; gap: 8px;">
           <button type="button" class="btn-secondary" id="cancelManageBtn">إلغاء</button>
@@ -1640,7 +1630,7 @@
 
         <div style="border-top:1px solid var(--border-color); padding-top:12px; margin-top:8px;">
           <button type="button" class="btn-danger" id="resetDefaultsBtn" style="width:100%;">
-            ⚠️ إعادة الضبط للقنوات الأربع الافتراضية
+            ⚠️ إعادة الضبط لجميع القنوات الافتراضية
           </button>
         </div>
       </div>
@@ -1661,12 +1651,12 @@
         <input type="hidden" id="deleteSiteId">
         <p id="deletePromptText" style="font-size: 0.95rem; color: #334155; line-height: 1.6;"></p>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
-          سيتم إرجاع الموقع إلى دليل المواقع الداخلي، ويمكنك إضافته مجدداً في أي وقت.
+          يمكنك إضافة الموقع مجدداً في أي وقت عبر زر الإضافة (+).
         </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn-secondary" id="cancelDeleteBtn">تراجع</button>
-        <button type="button" class="btn-danger" id="confirmDeleteBtn">نعم، احذف وأرجع للدليل</button>
+        <button type="button" class="btn-danger" id="confirmDeleteBtn">نعم، احذف الموقع</button>
       </div>
     </div>
   </div>
@@ -1874,16 +1864,12 @@
     let activeSites = [];
     let savedSearchQuery = '';
     let currentCategory = 'all';
-    let directorySearchQuery = '';
     let isAppInitialized = false;
 
-    let directoryPage = 1;
-    const DIRECTORY_PAGE_SIZE = 25;
-
     // Storage Keys
-    const STORAGE_KEY_V5 = 'news_app_active_sites_v5';
-    const STORAGE_KEY_CATS = 'news_app_custom_cats_v5';
-    const DB_NAME_V5 = 'NewsAppStorage_v5';
+    const STORAGE_KEY_V5 = 'news_app_active_sites_v6';
+    const STORAGE_KEY_CATS = 'news_app_custom_cats_v6';
+    const DB_NAME_V5 = 'NewsAppStorage_v6';
     const DB_STORE_V5 = 'active_sites_store';
 
     function debounce(fn, delay = 150) {
@@ -2046,20 +2032,41 @@
     }
 
     function getDefaultInitialSites() {
-      const initial = [];
-      DEFAULT_MAIN_SITE_IDS.forEach(id => {
-        const found = MASTER_DIRECTORY.find(item => item.id === id);
-        if (found) {
-          initial.push({
-            ...found,
-            visits: 10,
-            lastVisited: Date.now(),
-            isUserAdded: false,
-            isFavorite: false
-          });
+      const now = Date.now();
+      const base = MASTER_DIRECTORY.map(item => ({
+        ...item,
+        visits: DEFAULT_MAIN_SITE_IDS.includes(item.id) ? 10 : 0,
+        lastVisited: now,
+        isUserAdded: false,
+        isFavorite: false
+      }));
+
+      // Migrate any favorites, visits, or custom sites from v5 if present
+      try {
+        const oldRaw = localStorage.getItem('news_app_active_sites_v5');
+        if (oldRaw) {
+          const oldSites = JSON.parse(oldRaw);
+          if (Array.isArray(oldSites)) {
+            oldSites.forEach(oldItem => {
+              const match = base.find(b => b.id === oldItem.id || cleanDomain(b.url) === cleanDomain(oldItem.url));
+              if (match) {
+                if (oldItem.isFavorite) match.isFavorite = true;
+                if (Number(oldItem.visits) > match.visits) match.visits = Number(oldItem.visits);
+                if (oldItem.lastVisited) match.lastVisited = Number(oldItem.lastVisited);
+              } else if (oldItem.isUserAdded) {
+                base.unshift({
+                  ...oldItem,
+                  isFavorite: Boolean(oldItem.isFavorite),
+                  visits: Number(oldItem.visits) || 5,
+                  lastVisited: Number(oldItem.lastVisited) || now
+                });
+              }
+            });
+          }
         }
-      });
-      return initial;
+      } catch (e) {}
+
+      return base;
     }
 
     async function loadActiveSites() {
@@ -2264,13 +2271,6 @@
     function updateCounters() {
       const siteCountEl = document.getElementById('siteCount');
       if (siteCountEl) siteCountEl.innerText = activeSites.length;
-
-      const availableCount = MASTER_DIRECTORY.filter(item => {
-        return !activeSites.some(act => cleanDomain(act.url) === cleanDomain(item.url));
-      }).length;
-
-      const dirBadge = document.getElementById('dirCountBadge');
-      if (dirBadge) dirBadge.innerText = availableCount;
     }
 
     // Render Saved Sites Grid
@@ -2318,7 +2318,7 @@
           }
         } else if (currentCategory === 'favorites') {
           empty.innerHTML = `
-            <div style="font-size: 1.05rem; font-weight:800; color: #1e293b;">⭐ لا توجد مواقع في المفضلة حالياً</div>
+            <div style="font-size: 1.05rem; font-weight:800; color: #222222;">⭐ لا توجد مواقع في المفضلة حالياً</div>
             <div style="font-size: 0.84rem; color: #64748b; max-width: 320px; line-height: 1.5;">
               انقر على النجمة في بطاقة الموقع أو من قائمة (⋮) لتمييزه فوراً كمفضل.
             </div>
@@ -2327,7 +2327,7 @@
         } else {
           empty.innerHTML = `
             <div>لا توجد مواقع معروضة في هذا التصنيف حالياً.</div>
-            <button type="button" class="empty-state-btn" id="emptyAddBtn">➕ إضافة موقع من الدليل</button>
+            <button type="button" class="empty-state-btn" id="emptyAddBtn">➕ إضافة موقع جديد</button>
           `;
           grid.appendChild(empty);
           const addBtn = document.getElementById('emptyAddBtn');
@@ -2474,139 +2474,7 @@
       window.open(finalUrl, '_blank', 'noopener,noreferrer');
     }
 
-    // Render Directory
-    function renderDirectory(appendNext = false) {
-      const list = document.getElementById('directoryResultsList');
-      if (!list) return;
 
-      if (!appendNext) {
-        list.innerHTML = '';
-        directoryPage = 1;
-      }
-
-      updateCounters();
-
-      const availableSites = MASTER_DIRECTORY.filter(item => {
-        return !activeSites.some(act => cleanDomain(act.url) === cleanDomain(item.url));
-      });
-
-      const query = directorySearchQuery.trim().toLowerCase();
-      const filtered = availableSites.filter(item => {
-        if (!query) return true;
-        return (item.name && item.name.toLowerCase().includes(query)) ||
-               (item.description && item.description.toLowerCase().includes(query)) ||
-               item.domain.toLowerCase().includes(query) ||
-               (item.tags && item.tags.toLowerCase().includes(query));
-      });
-
-      if (filtered.length === 0) {
-        if (availableSites.length === 0) {
-          list.innerHTML = '<div style="text-align:center; padding:20px; color:#10b981; font-weight:800; font-size:0.9rem;">🎉 رائع! جميع مواقع الدليل مضافة حالياً لشاشتك.</div>';
-        } else {
-          list.innerHTML = '<div style="text-align:center; padding:16px; color:#94a3b8; font-size:0.85rem;">لم يتم العثور على موقع مطابق. يمكنك إدخال الرابط يدوياً عبر "رابط يدوي مخصص".</div>';
-        }
-        return;
-      }
-
-      const oldMoreBtn = document.getElementById('directoryLoadMoreBtn');
-      if (oldMoreBtn) oldMoreBtn.remove();
-
-      const startIndex = (directoryPage - 1) * DIRECTORY_PAGE_SIZE;
-      const endIndex = Math.min(filtered.length, directoryPage * DIRECTORY_PAGE_SIZE);
-      const chunk = filtered.slice(startIndex, endIndex);
-
-      const fragment = document.createDocumentFragment();
-
-      chunk.forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'directory-item';
-        row.id = 'dir_item_' + item.id;
-
-        const info = document.createElement('div');
-        info.className = 'directory-item-info';
-
-        const img = document.createElement('img');
-        img.style.width = '24px';
-        img.style.height = '24px';
-        img.style.borderRadius = '6px';
-        img.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(item.domain)}&sz=64`;
-        img.alt = item.name;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.onerror = () => { img.style.display = 'none'; };
-        info.appendChild(img);
-
-        const text = document.createElement('div');
-        text.className = 'directory-item-text';
-
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'directory-item-name';
-        nameSpan.textContent = item.name;
-
-        const descSpan = document.createElement('span');
-        descSpan.className = 'directory-item-desc';
-        descSpan.textContent = item.description;
-
-        text.appendChild(nameSpan);
-        text.appendChild(descSpan);
-        info.appendChild(text);
-
-        row.appendChild(info);
-
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'btn-quick-add';
-        btn.textContent = '➕ إضافة';
-        btn.onclick = () => addSiteFromDirectory(item);
-        row.appendChild(btn);
-
-        fragment.appendChild(row);
-      });
-
-      list.appendChild(fragment);
-
-      if (endIndex < filtered.length) {
-        const moreBtn = document.createElement('button');
-        moreBtn.type = 'button';
-        moreBtn.className = 'btn-load-more';
-        moreBtn.id = 'directoryLoadMoreBtn';
-        const remaining = filtered.length - endIndex;
-        moreBtn.textContent = `📥 عرض المزيد (${remaining} موقع متبقٍ)...`;
-        moreBtn.onclick = () => {
-          directoryPage++;
-          renderDirectory(true);
-        };
-        list.appendChild(moreBtn);
-      }
-    }
-
-    function addSiteFromDirectory(item) {
-      const fullUrl = formatUrl(item.url);
-      const domain = cleanDomain(item.url);
-
-      const newSite = {
-        id: item.id || ('site_' + Date.now()),
-        name: item.name,
-        description: item.description,
-        url: fullUrl,
-        domain: domain,
-        category: item.category || 'palestine',
-        translate: Boolean(item.translate),
-        visits: 5,
-        lastVisited: Date.now(),
-        isUserAdded: false,
-        isFavorite: false
-      };
-
-      activeSites.unshift(newSite);
-      sortActiveSites();
-      persistActiveSites();
-
-      renderSites();
-      renderDirectory();
-
-      showToast(`تمت إضافة "${item.name}" بنجاح`, 'success');
-    }
 
     function addCustomSite() {
       const urlInput = document.getElementById('quickUrlInput');
@@ -2672,7 +2540,6 @@
       persistActiveSites();
 
       renderSites();
-      renderDirectory();
 
       urlInput.value = '';
       nameInput.value = '';
@@ -2692,17 +2559,15 @@
 
       persistActiveSites();
       renderSites();
-      renderDirectory();
       closeDeleteModal();
 
-      showToast(`تمت إزالة "${siteName}" وأُعيد للدليل الداخلي`, 'info');
+      showToast(`تمت إزالة "${siteName}" من الشاشة`, 'info');
     }
 
     function openAddModal() {
       populateCategoryDropdowns();
-      renderDirectory();
       document.getElementById('addModalOverlay').classList.add('active');
-      document.getElementById('directorySearchInput').focus();
+      document.getElementById('quickUrlInput').focus();
     }
 
     function closeAddModal() {
@@ -2860,7 +2725,6 @@
       sortActiveSites();
       persistActiveSites();
       renderSites();
-      renderDirectory();
       closeManageModal();
       showToast('تم حفظ التعديلات بنجاح', 'success');
     }
@@ -2913,7 +2777,6 @@
             activeSites = imported;
             persistActiveSites();
             renderSites();
-            renderDirectory();
             closeBackupModal();
             showToast('تمت استعادة قنواتك ومفضلاتك بنجاح!', 'success');
           } else {
@@ -2928,14 +2791,12 @@
     });
 
     document.getElementById('resetDefaultsBtn').addEventListener('click', () => {
-      if (window.confirm('هل تريد استعادة القنوات الافتراضية الأربع الأساسية؟')) {
-        activeSites = getDefaultInitialSites();
-        persistActiveSites();
-        renderSites();
-        renderDirectory();
-        closeBackupModal();
-        showToast('تمت استعادة القنوات الافتراضية بنجاح', 'info');
-      }
+      activeSites = getDefaultInitialSites();
+      sortActiveSites();
+      persistActiveSites();
+      renderSites();
+      closeBackupModal();
+      showToast('تمت استعادة جميع القنوات الافتراضية بنجاح', 'info');
     });
 
     async function handlePaste() {
@@ -3060,36 +2921,7 @@
         if (e.target === e.currentTarget) closeAddCategoryModal();
       });
 
-      const tabSearchBtn = document.getElementById('tabSearchBtn');
-      const tabCustomBtn = document.getElementById('tabCustomBtn');
-      const tabSearchPane = document.getElementById('tabSearchPane');
-      const tabCustomPane = document.getElementById('tabCustomPane');
 
-      function switchAddTab(activeBtn, activePane) {
-        [tabSearchBtn, tabCustomBtn].forEach(b => b.classList.remove('active'));
-        [tabSearchPane, tabCustomPane].forEach(p => p.classList.remove('active'));
-        activeBtn.classList.add('active');
-        activePane.classList.add('active');
-      }
-
-      tabSearchBtn.addEventListener('click', () => {
-        switchAddTab(tabSearchBtn, tabSearchPane);
-        document.getElementById('directorySearchInput').focus();
-      });
-
-      tabCustomBtn.addEventListener('click', () => {
-        switchAddTab(tabCustomBtn, tabCustomPane);
-        document.getElementById('quickUrlInput').focus();
-      });
-
-      const debouncedDirSearch = debounce((query) => {
-        directorySearchQuery = query;
-        renderDirectory();
-      }, 150);
-
-      document.getElementById('directorySearchInput').addEventListener('input', (e) => {
-        debouncedDirSearch(e.target.value);
-      });
 
       document.getElementById('addCustomSiteBtn').addEventListener('click', addCustomSite);
       document.getElementById('pasteBtn').addEventListener('click', handlePaste);
